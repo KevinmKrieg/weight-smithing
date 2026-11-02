@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "weight-smithing"
-version = "0.1.0"
-description = "Direct, training-free neural weight programming in grid-based Breakout"
+version = "0.2.0"
+description = "A controlled experiment in direct LLM-to-LLM neural weight editing"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
@@ -13,13 +13,19 @@ dependencies = ["numpy>=1.24"]
 
 [project.optional-dependencies]
 minatar = ["minatar>=1.0.11"]
-dev = ["pytest>=7", "matplotlib>=3.7"]
+target = ["torch>=2.3", "transformers>=4.45,<5", "safetensors>=0.4"]
+editor = ["openai>=1.70,<3"]
+llm = ["torch>=2.3", "transformers>=4.45,<5", "safetensors>=0.4", "openai>=1.70,<3"]
+dev = ["pytest>=8", "matplotlib>=3.7"]
 
 [project.scripts]
 weightspace-eval = "weightspace.evaluate:main"
 weightspace-inspect = "weightspace.inspect:main"
 weightspace-patch = "weightspace.patch:main"
 weightspace-plot = "weightspace.plot:main"
+weightsmith-practice = "weightsmith.practice:main"
+weightsmith-experiment = "weightsmith.experiment:main"
+weightsmith-plot = "weightsmith.plot:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

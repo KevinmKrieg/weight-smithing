@@ -1,7 +1,9 @@
 name: Test
+
 on:
   push:
   pull_request:
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -9,7 +11,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
-      - run: pip install -e '.[dev]'
+          python-version: '3.11'
+      - name: Install CPU PyTorch and tests
+        run: |
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -e '.[dev]'
       - run: pytest -q
       - run: python -m weightspace.evaluate --backend toy --episodes 5 --max-steps 50

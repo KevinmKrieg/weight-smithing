@@ -1,0 +1,35 @@
+name: Qwen practice diagnosis (CPU)
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/qwen-practice.yml'
+      - 'src/weightsmith/**'
+      - 'pyproject.toml'
+
+jobs:
+  practice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install CPU PyTorch and target model runtime
+        run: |
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -e '.[target]'
+      - name: Practice-only baseline and activation report
+        run: |
+          python -m weightsmith.practice --device cpu --per-family 2 --max-new-tokens 32 --out artifacts/qwen-practice-actions
+          cat artifacts/qwen-practice-actions/practice.json
+          cat artifacts/qwen-practice-actions/diagnostics.json
+      - name: Archive practice diagnostics (no heldout evaluation)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qwen-practice-diagnostics
+          path: artifacts/qwen-practice-actions/
+          if-no-files-found: warn
