@@ -11,10 +11,21 @@
 
 This is a **negative result**, not evidence of weight-editing success. All runs and control outputs remain available in the artifact. Do not hide this when presenting a later positive experiment.
 
-## Pilot 002 — Targeted output-weight row (precommitted, separate experiment)
+## Pilot 002 — Targeted output-weight row (completed, targeted improvement)
 
-Observation from *practice only*: Qwen answered strict JSON questions with fenced Markdown rather than raw JSON. GPT-6 proposed directly suppressing the output-projection row for the code-fence token. The intervention derives a *single* weight-row delta from the average final hidden representation on **practice JSON failures**, with a pre-fixed target-logit reduction of 6.0. It is not gradient descent and uses no reward feedback.
+Observation from **practice prompts only**: Qwen repeatedly returned strict JSON inside Markdown code fences. GPT-6 proposed suppressing the code-fence token by editing that token's **output-projection weight row**, using a direction computed from final hidden states on practice JSON failures. The precommitted target-logit reduction was 6.0. No gradients, optimizer, or inference-time token blacklist were used.
 
-Two norm-matched controls: identical weight-row norm change in a random direction, and identical direction on a random vocabulary row. The new heldout tasks use **seed 7802** rather than seed 41, so the heldout results of Pilot 001 were not available when the second design was fixed.
+We pinned Qwen2.5-0.5B-Instruct (revision 7ae557604adf67be50417f59c2c2f167def9a775) and used a **fresh heldout seed (7802)**, separate from Pilot 001's heldout seed. The edit altered **896 of 494,032,768 parameters**, or approximately **0.00018%**.
 
-This is **a narrow output-formatting intervention**, not a claim that a language model learned more general reasoning skills. See [research protocol](research-protocol.md). Do not label results before its evaluation completes.
+| Condition | Fresh 32-prompt heldout accuracy |
+|---|---:|
+| Original Qwen | 15/32 — **46.9%** |
+| GPT-6-designed edit | 23/32 — **71.9%** |
+| Random direction, same row and edit norm | 15/32 — **46.9%** |
+| Random vocabulary row, same edit norm and direction | 15/32 — **46.9%** |
+
+The 8 changed responses were all strict-JSON cases (0/8 → 8/8). There were no observed changes on the other 24 prompts. Paired improvement: **+25.0 percentage points**, bootstrap 95% CI **[+9.38, +40.62]**.
+
+**Interpretation:** Successful narrow formatting repair, not more general mathematical reasoning. GPT-6 devised the edit; Python computed the complete 896-element vector from practice activations. No autonomous editor API supplied individual values.
+
+[Complete methods and output examples](qwen-output-edit.md) · [Raw model-run artifact](https://github.com/KevinmKrieg/weight-smithing/actions/runs/41532760652/artifacts/13181044922) · [Measured summary](../results/qwen-output-row-pilot-002.json).

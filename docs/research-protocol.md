@@ -1,5 +1,7 @@
 # Experiment 01 — Direct LLM-to-LLM weight editing
 
+> **Status update (November 2026):** This document describes the original constrained MLP-column editing protocol, which was executed as **Pilot 001** and produced **no measurable improvement** (12/32 for all variants). A subsequent **different intervention, Pilot 002**, edited a single output-token weight row and improved exact JSON formatting on a fresh 32-question set (15/32 → 23/32). For the completed result and distinct protocol, see [Pilot 002](qwen-output-edit.md). It would be incorrect to attribute Pilot 002's gains to the MLP method specified below.
+
 **Goal:** Test whether an editor language model can improve strict instruction-following in a different pretrained LLM by directly attenuating selected weight columns. This is our own study, not a replication of the source paper's checkpoint or scores.
 
 ## Precommitted design
