@@ -1,0 +1,35 @@
+{
+  "edits": [
+    {
+      "layer": 8,
+      "channel": 4391,
+      "multiplier": 0.75
+    },
+    {
+      "layer": 8,
+      "channel": 1734,
+      "multiplier": 0.75
+    },
+    {
+      "layer": 16,
+      "channel": 1530,
+      "multiplier": 0.5
+    },
+    {
+      "layer": 16,
+      "channel": 4667,
+      "multiplier": 0.65
+    },
+    {
+      "layer": 16,
+      "channel": 1167,
+      "multiplier": 0.7
+    },
+    {
+      "layer": 16,
+      "channel": 2443,
+      "multiplier": 0.7
+    }
+  ],
+  "rationale": "Proposed by GPT-6 in a human-in-the-loop inspection of the practice-only Qwen2.5-0.5B diagnostic artifact from GitHub Actions run 41530657440. In layer 16, channels 1530, 4667, 1167 and 2443 showed stronger positive input activation on failed versus correct practice prompts, with nontrivial column weight norms. Layer 8 channels 4391 and 1734 showed more negative activations on failures. Attenuation is a bounded exploratory causal intervention, not a known semantic neuron fix; success is not assumed. No held-out examples were viewed."
+}
