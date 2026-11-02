@@ -1,0 +1,48 @@
+{
+  "setup": {
+    "backend": "toy",
+    "episodes": 300,
+    "seed": 0,
+    "max_steps": 500,
+    "sticky": 0.1,
+    "temperature": 1,
+    "model": "600-32-32-6 tanh",
+    "note": "No gradients, PPO baseline, or author checkpoints used."
+  },
+  "policies": {
+    "zero": {
+      "mean_reward": 1.547,
+      "std_reward": 0.827
+    },
+    "follow": {
+      "mean_reward": 1.913,
+      "std_reward": 1.171
+    },
+    "lead": {
+      "mean_reward": 7.82,
+      "std_reward": 8.136
+    }
+  },
+  "paired_differences_from_zero": {
+    "follow": {
+      "mean": 0.367,
+      "standard_error": 0.093
+    },
+    "lead": {
+      "mean": 6.273,
+      "standard_error": 0.476
+    }
+  },
+  "weight_edits": {
+    "follow": {
+      "nonzero": 117,
+      "total": 20486,
+      "fraction": 0.005711
+    },
+    "lead": {
+      "nonzero": 318,
+      "total": 20486,
+      "fraction": 0.015523
+    }
+  }
+}
