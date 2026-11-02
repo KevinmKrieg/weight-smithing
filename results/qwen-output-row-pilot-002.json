@@ -1,0 +1,83 @@
+{
+  "title": "Pilot 002 — GPT-6-designed output-row intervention on Qwen2.5-0.5B-Instruct",
+  "result_origin": "Measured independently in project GitHub Actions, not from the source paper",
+  "github_actions_run": "https://github.com/KevinmKrieg/weight-smithing/actions/runs/41532760652",
+  "complete_raw_artifact": "https://github.com/KevinmKrieg/weight-smithing/actions/runs/41532760652/artifacts/13181044922",
+  "base_model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "hf_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "editor": "GPT-6 (ChatGPT) designed the narrow output-row intervention; practice-derived vector computed deterministically, not an autonomous API edit",
+  "parameters": {
+    "total": 494032768,
+    "actual_changed": 896,
+    "fraction": 0.000001813644879523457,
+    "percent": 0.0001813644879523457,
+    "token_id": 73594,
+    "token_text": "```",
+    "delta_l2": 0.021723881363868713
+  },
+  "setup": {
+    "practice_seed": 41,
+    "heldout_seed": 7802,
+    "heldout_n": 32,
+    "task_families": [
+      "arithmetic",
+      "json",
+      "uppercase",
+      "selection"
+    ],
+    "per_family": 8,
+    "max_new_tokens": 32,
+    "decoding": "greedy",
+    "gradient_updates": 0,
+    "margin_in_logits_on_mean_practice_json_state": 6
+  },
+  "heldout": {
+    "base": {
+      "n_correct": 15,
+      "accuracy": 0.46875,
+      "mean_tokens": 8.96875,
+      "by_family": {
+        "arithmetic": 0.75,
+        "json": 0,
+        "uppercase": 1,
+        "selection": 0.125
+      }
+    },
+    "directed_edit": {
+      "n_correct": 23,
+      "accuracy": 0.71875,
+      "mean_tokens": 7.96875,
+      "by_family": {
+        "arithmetic": 0.75,
+        "json": 1,
+        "uppercase": 1,
+        "selection": 0.125
+      }
+    },
+    "random_direction": {
+      "n_correct": 15,
+      "accuracy": 0.46875
+    },
+    "random_row": {
+      "n_correct": 15,
+      "accuracy": 0.46875
+    }
+  },
+  "paired": {
+    "delta_accuracy_percentage_points": 25,
+    "ci95_percentage_points": [
+      9.38,
+      40.62
+    ],
+    "improved_tasks": 8,
+    "regressed_tasks": 0,
+    "unchanged_tasks": 24
+  },
+  "regression_split": {
+    "n": 12,
+    "base_accuracy": 0.5833333333333334,
+    "edited_accuracy": 0.8333333333333334,
+    "note": "New same-family tasks, not broad general capability test"
+  },
+  "conclusion": "Exact JSON formatting improved on all 8 heldout examples; other three task families unchanged. Narrow output formatting result, not reasoning skill gain."
+}
