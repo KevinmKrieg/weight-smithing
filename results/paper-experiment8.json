@@ -1,0 +1,62 @@
+{
+  "source": "https://rikiyat.github.io/blog/weight-space-programming/",
+  "source_logs": "https://github.com/RikiyaT/lm_understand-logs",
+  "experiment": "8: Make a language model better at math",
+  "attribution": "Takehi, Teoh, Zhang and Khattab (2026); reported in source, NOT independently reproduced by weight-smithing",
+  "model": "Qwen/Qwen3.5-0.8B",
+  "editor": "GPT-6 Astra",
+  "methods": {
+    "gradient_updates": 0,
+    "practice_forward_pass_budget_best": 50,
+    "edited_weights": 131072,
+    "edited_percent_reported": 0.016,
+    "edited_mlp_layers": [
+      15,
+      19
+    ],
+    "edited_output_columns_per_layer": 64,
+    "eval_max_tokens": 32768,
+    "sampling": {
+      "temperature": 0.6,
+      "top_p": 0.95,
+      "top_k": 20,
+      "presence_penalty": 1.5
+    }
+  },
+  "columns": [
+    "MATH-500",
+    "GSM8K",
+    "IFEval",
+    "MATH-500 hit token limit"
+  ],
+  "results": [
+    {
+      "name": "Base",
+      "math500": 7.9,
+      "gsm8k": 13.8,
+      "ifeval": 21,
+      "limit": 93
+    },
+    {
+      "name": "Edited (10 practice passes)",
+      "math500": 12.3,
+      "gsm8k": 25.7,
+      "ifeval": 49,
+      "limit": 87.2
+    },
+    {
+      "name": "Edited (25 practice passes)",
+      "math500": 14.1,
+      "gsm8k": 25.1,
+      "ifeval": 39.9,
+      "limit": 86.4
+    },
+    {
+      "name": "Edited (50 practice passes)",
+      "math500": 48.1,
+      "gsm8k": 67.1,
+      "ifeval": 62.3,
+      "limit": 33.1
+    }
+  ]
+}

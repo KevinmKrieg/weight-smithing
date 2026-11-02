@@ -1,114 +1,105 @@
 <div align="center">
-  <img src="assets/hero.svg" width="100%" alt="Weight Smithing — direct neural weight programming" />
+  <img src="assets/llm-weight-editor.svg" width="100%" alt="Weight Smithing: can one LLM debug another by editing its weights?" />
+
+  <strong>Weight Smithing</strong> — exploring whether language models can understand and directly rewrite the parameters of other language models.
 </div>
 
 # Weight Smithing
 
-**Can a neural network be programmed directly by changing a tiny fraction of its weights, without training?**
+**Can one LLM debug another LLM by changing its neural weights, without gradient descent?**
 
-This is an independent, auditable **partial reproduction** of [Sparks of Weight-Space Programming](https://rikiyat.github.io/blog/weight-space-programming/) by Takehi, Teoh, Zhang, and Khattab (2026). The project implements a **600 → 32 → 32 → 6 tanh** controller, with a sparse weight-editing program and reproducible Breakout experiments.
+Usually we improve a language model by changing prompts, collecting fine-tuning data, or running an optimizer. [*Weight-space programming*](https://rikiyat.github.io/blog/weight-space-programming/) suggests a different possibility: a frontier LLM identifies what is going wrong inside a model, then **edits the weights themselves**.
+
+Our new reproduction target is **Experiment 8**, in which GPT-6 Astra inspected the weights of [Qwen3.5-0.8B](https://huggingface.co/Qwen/Qwen3.5-0.8B), diagnosed a repetitive-reasoning failure, and altered a tiny part of its MLP weights.
 
 > [!IMPORTANT]
-> **These results are from our own simplified toy Breakout, with hand-designed weights.** They do **not** reproduce the paper's MinAtar performance, compare against PPO, or demonstrate an LLM writing the weights. This repository currently reproduces the *method*, not the headline paper benchmarks.
+> **Project status:** This is our **next reproduction target**, not an achieved result. We have **not** yet run Qwen, generated an LLM-directed patch, or reproduced Experiment 8. The charts immediately below show **numbers reported by the original paper**, not our measurements. Our completed work so far is an independent, hand-programmed toy Breakout proof of concept, preserved [here](docs/breakout.md).
 
-## At a glance
+## The result we're trying to reproduce
 
-| Metric · 2,000 toy episodes | Result |
-|:--|--:|
-| Position + velocity controller (lead) | **8.02 reward** |
-| Zero-weight randomized baseline | **1.58 reward** |
-| Reward multiplier | **5.09×** |
-| Matched-seed reward improvement (95% CI) | **+6.44 [6.07, 6.80]** |
-| Paired episode win rate | **80.1%** |
-| Nonzero parameters in lead controller | **318 / 20,486 (1.55%)** |
+<img src="assets/paper-experiment8.svg" width="100%" alt="Paper-reported improvements for Qwen3.5-0.8B, clearly labeled not independently reproduced" />
 
-All three policies use the same network shape. Results: seeds 0–1999, 500-step cap, 10% sticky actions and action sampling at temperature 1. Confidence intervals use 5,000 seeded-episode bootstrap resamples.
+The authors report these results after Astra used **50 practice forward passes** to diagnose and edit Qwen. Evaluations used the same sampling settings before and after editing.
 
-![Mean reward bar chart with confidence intervals](assets/mean-reward.svg)
+| Published metric | Original Qwen | After Astra's edit |
+|---|---:|---:|
+| MATH-500 accuracy | 7.9% | **48.1%** |
+| GSM8K accuracy | 13.8% | **67.1%** |
+| IFEval instruction following | 21.0% | **62.3%** |
+| MATH-500 answers hitting 32,768-token limit | 93.0% | **33.1%** |
+| Parameters modified | — | **131,072 (~0.016%)** |
 
-A small, transparent circuit is enough to outperform a uniform random policy in this simplified environment. The difference is much larger when the controller also estimates horizontal ball velocity.
+**Source:** [Takehi et al., *Sparks of Weight-Space Programming*, Experiment 8](https://rikiyat.github.io/blog/weight-space-programming/) · [Original authors' complete experiment logs](https://github.com/RikiyaT/lm_understand-logs).
 
-## Beyond the average
+### What was actually fixed?
 
-![Reward survival curve for lead, follow, and zero networks](assets/reward-tail.svg)
+The base model often got trapped in repeated reasoning, continuing until its token budget ran out. Astra used practice prompts and forward passes to investigate this failure, then subtracted a harmful direction from **64 output columns in each of two MLPs (layers 15 and 19)**, affecting 131,072 parameters. It did **not** use backpropagation or fine-tune the model.
 
-The lead controller scores **at least five reward in 49.2%** of episodes, compared with **0.6%** for random. Its 90th-percentile episode reward is **23**, versus **3** for the baseline. The curves are empirical episode distributions, not fitted models.
+This is more precise than saying the edit *taught Qwen mathematics*: the reported mechanism removed an obstacle to completing answers the model could already reason through. In a separate test on Gemma 3 270M, a model without the same looping issue, the authors did **not** establish a comparable improvement.
 
-## Stress test: sticky actions
+## How the experiment works
 
-![Mean reward versus sticky action probability](assets/robustness.svg)
+```mermaid
+flowchart LR
+    A["Target LLM<br/>Qwen3.5-0.8B"] --> B["Diagnose<br/>reasoning loops"]
+    B --> C["Editor LLM<br/>inspects model weights"]
+    C --> D["Propose sparse<br/>weight change"]
+    D --> E["Apply patch<br/>no gradient descent"]
+    E --> F["Evaluate base vs. edited<br/>held-out prompts"]
+```
 
-| Chance the last action repeats | Episodes per policy | Zero | Follow | Lead |
-|:--|--:|--:|--:|--:|
-| 0% | 1,000 | 1.53 | 1.99 | **14.67** |
-| 10% | 2,000 | 1.58 | 1.88 | **8.02** |
-| 25% | 1,000 | 1.52 | 1.82 | **4.24** |
-| 50% | 1,000 | 1.53 | 1.62 | **2.25** |
+The distinction matters: **the editor reasons about model internals and changes parameters directly**, rather than merely proposing better prompts or launching a standard training job.
 
-The same weights are evaluated across all conditions; no retraining or parameter adjustment occurs. The steep decline is an important limitation of the heuristic controller.
+## What this repository will test
 
-## Inside the sparse circuit
+The goal is not to copy the published before/after numbers onto our own leaderboard. It is to reproduce the mechanism under a transparent and falsifiable protocol:
 
-![A visual explanation of the coordinate-based weight program](assets/weight-map.svg)
+1. **Baseline:** Pin the exact open-weight Qwen checkpoint and evaluation settings. Record sample completions, repetition behavior, answer accuracy, and output token counts.
+2. **Recreate the patch:** Inspect the [original released logs](https://github.com/RikiyaT/lm_understand-logs), isolate the documented edit, and independently apply and measure it.
+3. **LLM-as-editor:** Have an LLM inspect the target's weights, diagnostics, and *practice-only* generations. Save its proposed parameter patch **before** held-out evaluation; do not use gradients.
+4. **Controls:** Compare original model, author-inspired patch, editor-proposed patch, and matched-size random or shuffled edits. Include unrelated behavior and regression tests.
+5. **Make it visible:** Publish real before/after completions, repetition-rate plots, benchmark accuracy, edit sparsity, and reproducibility details.
 
-The first hidden layer is programmed to represent **ball X minus paddle X** and, in the lead variant, **ball X minus previous ball X**. A second tanh layer combines the signals and the output weights favor left, right, or no-op. Every parameter starts at zero; only **318** need become nonzero.
+See the [Experiment 8 reproduction protocol](docs/experiment8-plan.md) for the controls, limitations, and exact paper settings. All paper-reported numbers are separately captured in [results/paper-experiment8.json](results/paper-experiment8.json).
 
-There is no gradient computation, data fitting, optimizer, or training loop in [the weight writer](src/weightspace/program.py).
+## What is already implemented?
 
-## Reproduce it
+**Phase 0 — direct-weight programming in a small network.**
 
-Python 3.10+:
+We built an independent 600 → 32 → 32 → 6 tanh controller whose parameters are written without gradient descent. It plays a **simplified toy version of Breakout** using hand-coded position/velocity circuits, not an LLM-generated patch. Across 2,000 toy episodes, it averaged **8.02 reward** versus **1.58** for a zero-weight randomized baseline, with just **318 nonzero parameters**.
 
-~~~bash
+That experiment is useful as a minimal demonstration of direct parameter editing, but **it does not test whether an LLM can edit another LLM**.
+
+[Breakout experiment, original charts, and full reproduction commands](docs/breakout.md)
+
+## Get started
+
+The existing **toy Breakout** code is runnable today:
+
+```bash
 git clone https://github.com/KevinmKrieg/weight-smithing.git
 cd weight-smithing
 python -m pip install -e '.[dev]'
 pytest -q
+python -m weightspace.evaluate --backend toy --episodes 300
+```
 
-# Repeat the main experiment
-python -m weightspace.evaluate --backend toy --episodes 2000 \
-  --sticky 0.1 --max-steps 500 --out artifacts/toy-2000.json
+**There is no Qwen reproduction command yet**, because no Qwen edit or matched benchmark has been implemented. The full Experiment 8 workflow is a research plan, not an executable feature. This will be updated as each phase is actually verified.
 
-# Run all four robustness settings and regenerate the statistical report
-python scripts/run_benchmarks.py
-
-# Rebuild the five SVGs shown on this page (Node.js 18+)
-node scripts/render_readme_charts.mjs
-~~~
-
-The [benchmark summary](results/benchmark-summary.json) provides the data behind every chart and exact confidence intervals.
-
-For a **separately labeled, optional upstream MinAtar evaluation** (not equivalent to the paper's custom six-channel mapping):
-
-~~~bash
-python -m pip install -e '.[minatar]'
-python -m weightspace.evaluate --backend minatar --episodes 100 --max-steps 1000
-~~~
-
-For weight exports and a prompt to ask an LLM to interpret a policy, run:
-
-~~~bash
-python -m weightspace.inspect --policy lead --export artifacts/lead.npz \
-  --prompt artifacts/lead-prompt.txt
-~~~
-
-A [safe JSON-only sparse edit proposal interface](docs/llm-proposal-prompt.md) is included for future **one-shot LLM weight-writing trials**; it does not execute generated code.
-
-## Reproduction status
+## Roadmap
 
 | Milestone | Status |
 |---|---|
-| Exact network dimensions and direct zero-shot weight edits | Complete |
-| 2,000-episode toy benchmark and bootstrap confidence intervals | Complete |
-| Sticky-action robustness sweep | Complete |
-| Reproducible SVG dashboard | Complete |
-| Official MinAtar experiment | Not run |
-| Fair, same-environment PPO baseline | Not run |
-| Actual LLM-generated network weights | Not run |
-| Published Seaquest / Asterix scores | Not reproduced |
+| Direct edits to a small neural network | **Implemented** |
+| Toy Breakout results and robustness plots | **Implemented** |
+| Qwen Experiment 8 paper analysis + provenance | **Documented** |
+| Run base Qwen and diagnose loops locally | Not started |
+| Independently recreate the authors' Qwen patch | Not started |
+| Generate a new patch with an LLM editor | Not started |
+| Evaluate against held-out sets and proper controls | Not started |
 
-[Research roadmap and validity notes](docs/reproduction-roadmap.md)
+[Detailed roadmap](docs/reproduction-roadmap.md) · [Paper](https://rikiyat.github.io/blog/weight-space-programming/) · [Source logs](https://github.com/RikiyaT/lm_understand-logs)
 
 ---
 
-<sub>Independently implemented, MIT licensed. Inspired by Takehi et al.; not affiliated with the authors. The upstream MinAtar dependency has its own license.</sub>
+<sub>Independent research reproduction inspired by Takehi, Teoh, Zhang, and Khattab (2026). Not affiliated with the paper's authors. Published benchmark results are attributed and explicitly distinguished from our own experiments. Code: MIT.</sub>
