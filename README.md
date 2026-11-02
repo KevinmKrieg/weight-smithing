@@ -1,35 +1,61 @@
+<div align="center">
+  <img src="assets/hero.svg" width="100%" alt="Weight Smithing — direct neural weight programming" />
+</div>
+
 # Weight Smithing
 
-**Programming neural networks directly in weight space — no gradients, no training.**
+**Can a neural network be programmed directly by changing a tiny fraction of its weights, without training?**
 
-An independent, auditable partial reproduction of the ideas in [Sparks of Weight-Space Programming: LLMs can natively read & write neural network weights](https://rikiyat.github.io/blog/weight-space-programming/) (Rikiya Takehi, Jayden Teoh, Alex Zhang, Omar Khattab, November 2026).
+This is an independent, auditable **partial reproduction** of [Sparks of Weight-Space Programming](https://rikiyat.github.io/blog/weight-space-programming/) by Takehi, Teoh, Zhang, and Khattab (2026). The project implements a **600 → 32 → 32 → 6 tanh** controller, with a sparse weight-editing program and reproducible Breakout experiments.
 
-## Scope
+> [!IMPORTANT]
+> **These results are from our own simplified toy Breakout, with hand-designed weights.** They do **not** reproduce the paper's MinAtar performance, compare against PPO, or demonstrate an LLM writing the weights. This repository currently reproduces the *method*, not the headline paper benchmarks.
 
-This repository demonstrates the central technique of the article's Experiment 5: constructing a small game-playing neural policy by **writing individual weights**, without optimization. It uses the reported **600 → 32 tanh → 32 tanh → 6** architecture (20,486 trainable parameters counting biases).
+## At a glance
 
-It is a **method-level partial reproduction**, not the authors' generated weights, exact harness, full game suite, trained PPO baseline, or reported results. The current networks are **hand-designed**, *not authored by an LLM*. No evidence is claimed for the article's other experiments.
+| Metric · 2,000 toy episodes | Result |
+|:--|--:|
+| Position + velocity controller (lead) | **8.02 reward** |
+| Zero-weight randomized baseline | **1.58 reward** |
+| Reward multiplier | **5.09×** |
+| Matched-seed reward improvement (95% CI) | **+6.44 [6.07, 6.80]** |
+| Paired episode win rate | **80.1%** |
+| Nonzero parameters in lead controller | **318 / 20,486 (1.55%)** |
 
-Three compared policies:
-- **zero:** all-zero MLP, sampling uniformly among the six actions.
-- **follow:** sparse direct-write circuit measuring ball X minus paddle X.
-- **lead:** same circuit, adding two times the difference between current and previous ball X (a velocity proxy).
+All three policies use the same network shape. Results: seeds 0–1999, 500-step cap, 10% sticky actions and action sampling at temperature 1. Confidence intervals use 5,000 seeded-episode bootstrap resamples.
 
-The evaluation uses a small independent 10x10 toy Breakout (offline smoke test) or an optional adapter to the separately installed official MinAtar Breakout implementation. Different environment details can change reward substantially; do not compare these scores to the article's PPO benchmarks.
+![Mean reward bar chart with confidence intervals](assets/mean-reward.svg)
 
-## Reproduced toy-environment results
+A small, transparent circuit is enough to outperform a uniform random policy in this simplified environment. The difference is much larger when the controller also estimates horizontal ball velocity.
 
-300 seeded episodes per policy, 500-step maximum, 0.1 sticky-action probability, temperature 1:
+## Beyond the average
 
-| Policy | Mean reward | Sample SD |
-|---|---:|---:|
-| Zero weight random baseline | 1.547 | 0.827 |
-| Direct-written follow | 1.913 | 1.171 |
-| Direct-written lead | **7.820** | 8.136 |
+![Reward survival curve for lead, follow, and zero networks](assets/reward-tail.svg)
 
-The lead circuit edits **318 / 20,486** parameters (1.55%); mean paired improvement over zero is 6.273 with standard error 0.476. These results were obtained on the *independent toy* environment only. Machine-readable results are in [results/toy-300-summary.json](results/toy-300-summary.json).
+The lead controller scores **at least five reward in 49.2%** of episodes, compared with **0.6%** for random. Its 90th-percentile episode reward is **23**, versus **3** for the baseline. The curves are empirical episode distributions, not fitted models.
 
-## Quick start
+## Stress test: sticky actions
+
+![Mean reward versus sticky action probability](assets/robustness.svg)
+
+| Chance the last action repeats | Episodes per policy | Zero | Follow | Lead |
+|:--|--:|--:|--:|--:|
+| 0% | 1,000 | 1.53 | 1.99 | **14.67** |
+| 10% | 2,000 | 1.58 | 1.88 | **8.02** |
+| 25% | 1,000 | 1.52 | 1.82 | **4.24** |
+| 50% | 1,000 | 1.53 | 1.62 | **2.25** |
+
+The same weights are evaluated across all conditions; no retraining or parameter adjustment occurs. The steep decline is an important limitation of the heuristic controller.
+
+## Inside the sparse circuit
+
+![A visual explanation of the coordinate-based weight program](assets/weight-map.svg)
+
+The first hidden layer is programmed to represent **ball X minus paddle X** and, in the lead variant, **ball X minus previous ball X**. A second tanh layer combines the signals and the output weights favor left, right, or no-op. Every parameter starts at zero; only **318** need become nonzero.
+
+There is no gradient computation, data fitting, optimizer, or training loop in [the weight writer](src/weightspace/program.py).
+
+## Reproduce it
 
 Python 3.10+:
 
@@ -38,45 +64,51 @@ git clone https://github.com/KevinmKrieg/weight-smithing.git
 cd weight-smithing
 python -m pip install -e '.[dev]'
 pytest -q
-python -m weightspace.evaluate --backend toy --episodes 300 --out artifacts/toy-results.json
+
+# Repeat the main experiment
+python -m weightspace.evaluate --backend toy --episodes 2000 \
+  --sticky 0.1 --max-steps 500 --out artifacts/toy-2000.json
+
+# Run all four robustness settings and regenerate the statistical report
+python scripts/run_benchmarks.py
+
+# Rebuild the five SVGs shown on this page (Node.js 18+)
+node scripts/render_readme_charts.mjs
 ~~~
 
-To exercise the optional original MinAtar Breakout API (not equivalent to the published evaluation harness):
+The [benchmark summary](results/benchmark-summary.json) provides the data behind every chart and exact confidence intervals.
+
+For a **separately labeled, optional upstream MinAtar evaluation** (not equivalent to the paper's custom six-channel mapping):
 
 ~~~bash
 python -m pip install -e '.[minatar]'
-python -m weightspace.evaluate --backend minatar --episodes 100 --max-steps 1000 --out artifacts/minatar-results.json
+python -m weightspace.evaluate --backend minatar --episodes 100 --max-steps 1000
 ~~~
 
-The native MinAtar actions are **no-op, left, up, right, down, fire**. Its four Breakout channels are remapped into the generic six channels (unused channels set to zero).
-
-Inspect and save the weight circuit, including an LLM-friendly *weight-only* prompt:
+For weight exports and a prompt to ask an LLM to interpret a policy, run:
 
 ~~~bash
-python -m weightspace.inspect --policy lead --export artifacts/lead.npz --prompt artifacts/lead-prompt.txt
+python -m weightspace.inspect --policy lead --export artifacts/lead.npz \
+  --prompt artifacts/lead-prompt.txt
 ~~~
 
-Generate a benchmark plot from a saved full-results JSON:
+A [safe JSON-only sparse edit proposal interface](docs/llm-proposal-prompt.md) is included for future **one-shot LLM weight-writing trials**; it does not execute generated code.
 
-~~~bash
-python -m weightspace.plot --results artifacts/toy-results.json --out artifacts/toy-comparison.png
-~~~
+## Reproduction status
 
-A separate **LLM-proposed edit** route is implemented as safe, declarative JSON; see [the one-shot challenge](docs/llm-proposal-prompt.md). A language model has not yet generated or evaluated a proposal, and the patch handler never executes generated code.
+| Milestone | Status |
+|---|---|
+| Exact network dimensions and direct zero-shot weight edits | Complete |
+| 2,000-episode toy benchmark and bootstrap confidence intervals | Complete |
+| Sticky-action robustness sweep | Complete |
+| Reproducible SVG dashboard | Complete |
+| Official MinAtar experiment | Not run |
+| Fair, same-environment PPO baseline | Not run |
+| Actual LLM-generated network weights | Not run |
+| Published Seaquest / Asterix scores | Not reproduced |
 
-## How direct weight writing works
+[Research roadmap and validity notes](docs/reproduction-roadmap.md)
 
-1. Start with every weight and bias initialized to exactly zero.
-2. In first-layer neuron 0, place spatial coefficients that project the observed ball and paddle locations into their horizontal difference.
-3. In the lead version, first-layer neuron 1 estimates horizontal ball displacement from the previous frame.
-4. Pass the values through the second tanh layer and hand-set output weights so positive offsets favor right, negative offsets favor left, and near-zero offsets favor no-op.
+---
 
-The entire circuit is auditable in [src/weightspace/program.py](src/weightspace/program.py). No loss function, backpropagation, training data, optimizer, or fitting call is present.
-
-## Research roadmap
-
-See [reproduction roadmap](docs/reproduction-roadmap.md) for official-environment evaluation, same-environment PPO controls, additional games, LLM-written tensors, and blind weight-reading evaluation.
-
-## Attribution / license
-
-Inspired by Takehi, Teoh, Zhang, and Khattab. This implementation was written independently and makes no claim of affiliation or authorship of the original experiments. MinAtar is an optional external dependency with its own license. This repository is MIT-licensed.
+<sub>Independently implemented, MIT licensed. Inspired by Takehi et al.; not affiliated with the authors. The upstream MinAtar dependency has its own license.</sub>

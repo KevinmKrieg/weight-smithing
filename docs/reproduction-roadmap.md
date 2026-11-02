@@ -1,37 +1,28 @@
 # Reproduction roadmap
 
-Source: https://rikiyat.github.io/blog/weight-space-programming/
+Reference: https://rikiyat.github.io/blog/weight-space-programming/
 
-## Completed: method-level partial reproduction of Experiment 5
+## Implemented
 
-- Exact MLP architecture 600 -> 32 tanh -> 32 tanh -> 6, including 20,486 weight/bias parameters.
-- All-zero initialization and sparse, direct weight assignments for a horizontal intercept controller.
-- Explicit zero-weight random-action baseline and two circuit variants, follow and lead.
-- Reproducible paired episode evaluation on a small independent toy Breakout.
-- Optional adapter to the upstream MinAtar Breakout environment (separately installed).
-- Serialization, weight-inspection prompt, safe declarative LLM-patch input, plotting, tests and GitHub Actions CI.
-- Initial offline benchmark on 300 toy episodes, summarized in results/toy-300-summary.json.
+- Exact 600 → 32 → 32 → 6 tanh architecture (20,486 parameters)
+- Direct sparse weight writing, without gradients or training
+- Deterministic toy Breakout evaluation (zero, follow, lead policies)
+- 2,000 seeded episodes at 10% sticky actions; paired bootstrap confidence intervals
+- Sticky-action sweep (0%, 10%, 25%, 50%) with frozen weights
+- Five reproducible SVG visualizations from a committed JSON summary
+- Optional MinAtar environment adapter; schema-validated JSON patch for future one-shot LLM edits
+- Unit tests and GitHub Actions
 
-## Not reproduced
+## Reproduction limitations
 
-The author's model-produced weights, exact six-channel game interface, Seaquest and Asterix circuits, large PPO baselines, and all published numeric results. The direct-programmed controller is **human-designed**; it does not demonstrate that an LLM can write such weights.
+This experiment uses **a simplified independent toy game** and **human-written weights**. It is not the original MinAtar harness and does not reproduce the paper's scores or demonstrate GPT-generated weights. The upstream MinAtar adapter is optional, and has not been used to obtain reported benchmark results. PPO scores cannot be compared without training/evaluating PPO in the same environment.
 
-The offline toy is NOT MinAtar. Even the optional upstream MinAtar adapter may differ from the published experiment's preprocessing/action semantics.
+The main lead-controller achieves 8.017 mean reward at 10% sticky actions on 2,000 toy episodes, but it is sensitive to action noise (14.666 at 0% sticky; 2.25 at 50% sticky). Statistics and seeds are in results/benchmark-summary.json.
 
 ## Next steps
 
-1. Validate channel semantics, episode handling, action interpretation and seed control against the original MinAtar code; run 1,000 episodes with sticky-action probability 0.1 and a longer horizon.
-2. Quantify uncertainty with seeded paired comparisons, report individual scores and confidence intervals, and compare only policies evaluated in the same environment.
-3. Train a fair PPO baseline in the exact matched harness, saving evaluation checkpoints and command lines.
-4. Add Seaquest and Asterix, including the correct object channels and observation rules.
-5. Run a genuinely one-shot LLM weight-writing trial. Record the prompt and JSON edit proposal **before** exposing any rollout scores. Never allow generated Python execution.
-6. Attempt the article's Experiment 1 weight-reading task with task identities withheld and one uniform input encoding; quantify recognition accuracy.
-7. Document limitations and replicate results across different seeds and models.
-
-## Threats to validity
-
-- The channel names and model interface partially disclose the task.
-- Sticky actions and finite episodes vary results; report configuration and evaluation horizon.
-- Our toy engine uses simplified collision physics and must not be used to claim the published benchmark.
-- PPO numbers are incomparable unless trained and measured against the identical game code.
-- No language model has generated weights in this initial release.
+1. Verify the six-channel input and action mapping against the author's game wrapper, then evaluate on original MinAtar for 1,000 episodes per policy and 10,000 max steps.
+2. Train a PPO baseline in that identical harness and archive checkpoints and training settings.
+3. Run a genuinely **one-shot** LLM-produced sparse weight-patch experiment, saving its proposal before any rollouts or reward feedback.
+4. Extend direct-weight circuits to Asterix and Seaquest, retaining exact action semantics.
+5. Reproduce the paper's blind weight-reading task separately.

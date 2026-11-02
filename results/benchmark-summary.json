@@ -1,0 +1,218 @@
+{
+  "protocol": {
+    "environment": "independent toy Breakout (NOT upstream MinAtar)",
+    "model": "600 → 32 tanh → 32 tanh → 6",
+    "max_steps": 500,
+    "seed_start": 0,
+    "action_temperature": 1,
+    "bootstrap_replicates": 5000,
+    "bootstrap_seed": 2026,
+    "ci_method": "percentile bootstrap over seeded episodes; paired differences use matched seeds",
+    "authoring": "human-designed weights (not LLM-generated)",
+    "training": "none"
+  },
+  "weights": {
+    "total": 20486,
+    "nonzero": 318,
+    "edited_fraction": 0.015523
+  },
+  "main": {
+    "episodes": 2000,
+    "sticky": 0.1,
+    "zero": {
+      "mean": 1.576,
+      "ci95": [
+        1.541,
+        1.6115
+      ],
+      "sd": 0.8268,
+      "median": 1,
+      "p90": 3,
+      "max": 6,
+      "p_ge5": 0.0055,
+      "hist": [
+        0,
+        1194,
+        540,
+        198,
+        57,
+        10,
+        1
+      ]
+    },
+    "follow": {
+      "mean": 1.8815,
+      "ci95": [
+        1.832,
+        1.9315
+      ],
+      "sd": 1.1376,
+      "median": 1,
+      "p90": 4,
+      "max": 6,
+      "p_ge5": 0.0365,
+      "hist": [
+        0,
+        1034,
+        464,
+        292,
+        137,
+        61,
+        12
+      ],
+      "paired_delta": 0.3055,
+      "delta_ci95": [
+        0.2375,
+        0.372
+      ],
+      "win": 0.375,
+      "tie": 0.3445,
+      "loss": 0.2805
+    },
+    "lead": {
+      "mean": 8.017,
+      "ci95": [
+        7.654,
+        8.3755
+      ],
+      "sd": 8.3033,
+      "median": 4,
+      "p90": 23,
+      "max": 44,
+      "p_ge5": 0.4915,
+      "hist": [
+        0,
+        238,
+        273,
+        261,
+        245,
+        205,
+        170,
+        73,
+        55,
+        4,
+        10,
+        0,
+        0,
+        0,
+        0,
+        34,
+        13,
+        15,
+        28,
+        33,
+        35,
+        61,
+        34,
+        57,
+        36,
+        30,
+        21,
+        13,
+        14,
+        19,
+        5,
+        6,
+        3,
+        3,
+        1,
+        0,
+        2,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "paired_delta": 6.441,
+      "delta_ci95": [
+        6.0745,
+        6.804
+      ],
+      "win": 0.8005,
+      "tie": 0.125,
+      "loss": 0.0745
+    }
+  },
+  "sweep": [
+    {
+      "sticky": 0,
+      "episodes": 1000,
+      "zero": [
+        1.534,
+        1.485,
+        1.584
+      ],
+      "follow": [
+        1.989,
+        1.919,
+        2.063
+      ],
+      "lead": [
+        14.666,
+        13.906,
+        15.4431
+      ]
+    },
+    {
+      "sticky": 0.1,
+      "episodes": 2000,
+      "zero": [
+        1.576,
+        1.541,
+        1.6115
+      ],
+      "follow": [
+        1.8815,
+        1.832,
+        1.9315
+      ],
+      "lead": [
+        8.017,
+        7.654,
+        8.3755
+      ]
+    },
+    {
+      "sticky": 0.25,
+      "episodes": 1000,
+      "zero": [
+        1.522,
+        1.475,
+        1.57
+      ],
+      "follow": [
+        1.817,
+        1.752,
+        1.881
+      ],
+      "lead": [
+        4.242,
+        3.943,
+        4.55
+      ]
+    },
+    {
+      "sticky": 0.5,
+      "episodes": 1000,
+      "zero": [
+        1.526,
+        1.478,
+        1.577
+      ],
+      "follow": [
+        1.615,
+        1.557,
+        1.673
+      ],
+      "lead": [
+        2.25,
+        2.135,
+        2.374
+      ]
+    }
+  ]
+}
