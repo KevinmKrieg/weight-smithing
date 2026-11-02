@@ -1,0 +1,50 @@
+name: Qwen targeted output-weight pilot
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/qwen-targeted.yml'
+      - 'src/weightsmith/targeted.py'
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: CPU target model and benchmark dependencies
+        run: |
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -e '.[target,dev]'
+      - name: One-row output-weight intervention with fresh heldout split
+        run: |
+          python -m weightsmith.targeted \
+            --checkpoint Qwen/Qwen2.5-0.5B-Instruct \
+            --revision 7ae557604adf67be50417f59c2c2f167def9a775 \
+            --device cpu --seed 41 --heldout-seed 7802 \
+            --practice-per-family 2 --heldout-per-family 8 \
+            --regression-per-family 3 --max-new-tokens 32 \
+            --logit-margin 6.0 \
+            --out artifacts/qwen-output-edit-001
+          cat artifacts/qwen-output-edit-001/summary.json
+          python - <<'PY'
+          import json
+          data=json.load(open('artifacts/qwen-output-edit-001/heldout.json'))['examples']
+          print('CHANGED HELDOUT RESPONSES')
+          for base,edited in zip(data['base'],data['directed_edit']):
+              if base['response'] != edited['response']:
+                  print(json.dumps({'id':base['id'],'family':base['family'],
+                      'before':base['response'][:200],'after':edited['response'][:200],
+                      'before_ok':base['correct'],'after_ok':edited['correct']}))
+          PY
+      - name: Preserve complete raw results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qwen-output-row-pilot-001
+          path: artifacts/qwen-output-edit-001/
+          if-no-files-found: warn

@@ -1,0 +1,42 @@
+{
+  "experiment": "Qwen2.5-0.5B-Instruct sparse MLP-column edit pilot 001",
+  "source_workflow": "https://github.com/KevinmKrieg/weight-smithing/actions/runs/41531166416",
+  "source_artifact": "https://github.com/KevinmKrieg/weight-smithing/actions/runs/41531166416/artifacts/13182417559",
+  "base_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "model_total_parameters": 494032768,
+  "evaluation": {
+    "heldout_n": 32,
+    "practice_n": 8,
+    "heldout_seed": 41,
+    "max_new_tokens": 32,
+    "decoding": "greedy",
+    "gradient_updates": 0
+  },
+  "results": {
+    "base": {
+      "accuracy": 0.375,
+      "mean_tokens": 8.59375
+    },
+    "gpt6_proposed_mlp_edit": {
+      "accuracy": 0.375,
+      "edited_parameters": 5376,
+      "paired_delta_pp": 0,
+      "paired_ci95_pp": [
+        0,
+        0
+      ]
+    },
+    "activation_ranked": {
+      "accuracy": 0.375,
+      "edited_parameters": 5376
+    },
+    "random_columns": {
+      "accuracy": 0.375,
+      "edited_parameters": 5376
+    }
+  },
+  "outcomes": {
+    "changed_generated_responses": 0,
+    "conclusion": "Negative result: this sparse activation-guided MLP edit did not change any heldout response."
+  }
+}
