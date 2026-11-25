@@ -96,6 +96,8 @@ Pilots 005–006: all three auditing heuristics correctly identified 8/8 synthet
 
 ## Next research steps
 
+[Pilots 010–012](docs/neuron-transfer.md) test two constrained local editors, partial attenuation chosen on practice data, and transfer of the selection method to a larger model and exact-label failure mode. Results pending CI.
+
 [Validation pilots 007–009](docs/neuron-validation.md) extend the internal edit to fresh prompt templates, compare target-specific downstream Jacobian readouts, and test a separate autonomous local model editor. **Results verified November 25, 2026.** Pilot 007: the unchanged four-column causal patch improved 31/96 to 47/96 (+16.7 pp), including 16/48 raw JSON repairs, but required-fence accuracy fell from 43/48 to 41/48. Pilot 008: local Jacobian prediction MAE 0.07377 vs direct lens 0.64176, correlation 0.990 vs 0.774 on the selected candidate union; held-out accuracy 31/48 vs 18/48 base, with one unrelated regression and net one required-fence loss (21/24 vs 22/24). Pilot 009: autonomous Qwen 1.5B output failed JSON parsing; no autonomous edit was applied or evaluated. Workflow success does not imply editor success. [Full verified summaries](results/neuron-validation-007-009.json) · [CI run](https://github.com/KevinmKrieg/weight-smithing/actions/runs/45659572618).
 
 - Scale beyond 32 held-out prompts and validate with multiple different seeds.
