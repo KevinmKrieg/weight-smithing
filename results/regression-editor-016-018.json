@@ -1,0 +1,2001 @@
+{
+  "run_id": 45699944755,
+  "source": "verified job log JSON",
+  "artifacts": [
+    {
+      "id": 15065668487,
+      "name": "regression-editor-017",
+      "expired": false
+    },
+    {
+      "id": 15064992397,
+      "name": "regression-editor-016",
+      "expired": false
+    },
+    {
+      "id": 15062019998,
+      "name": "regression-editor-018",
+      "expired": false
+    }
+  ],
+  "results": [
+    {
+      "job_id": 139507109959,
+      "conclusion": "success",
+      "summary": {
+        "pilot": "018",
+        "findings": [
+          {
+            "checkpoint": "HuggingFaceTB/SmolLM2-360M-Instruct",
+            "revision": "a10cc1512eabd3dde888204e902eca88bddb4951",
+            "family": "json",
+            "n": 18,
+            "correct": 6,
+            "format_only": 0
+          },
+          {
+            "checkpoint": "HuggingFaceTB/SmolLM2-360M-Instruct",
+            "revision": "a10cc1512eabd3dde888204e902eca88bddb4951",
+            "family": "label",
+            "n": 18,
+            "correct": 4,
+            "format_only": 0
+          },
+          {
+            "checkpoint": "HuggingFaceTB/SmolLM2-360M-Instruct",
+            "revision": "a10cc1512eabd3dde888204e902eca88bddb4951",
+            "family": "integer",
+            "n": 18,
+            "correct": 0,
+            "format_only": 0
+          },
+          {
+            "checkpoint": "HuggingFaceTB/SmolLM2-360M-Instruct",
+            "revision": "a10cc1512eabd3dde888204e902eca88bddb4951",
+            "family": "uppercase",
+            "n": 18,
+            "correct": 0,
+            "format_only": 0
+          },
+          {
+            "checkpoint": "HuggingFaceTB/SmolLM2-360M-Instruct",
+            "revision": "a10cc1512eabd3dde888204e902eca88bddb4951",
+            "family": "csv",
+            "n": 18,
+            "correct": 10,
+            "format_only": 0
+          },
+          {
+            "checkpoint": "HuggingFaceTB/SmolLM2-135M-Instruct",
+            "revision": "12fd25f77366fa6b3b4b768ec3050bf629380bac",
+            "family": "json",
+            "n": 18,
+            "correct": 0,
+            "format_only": 0
+          },
+          {
+            "checkpoint": "HuggingFaceTB/SmolLM2-135M-Instruct",
+            "revision": "12fd25f77366fa6b3b4b768ec3050bf629380bac",
+            "family": "label",
+            "n": 18,
+            "correct": 0,
+            "format_only": 0
+          },
+          {
+            "checkpoint": "HuggingFaceTB/SmolLM2-135M-Instruct",
+            "revision": "12fd25f77366fa6b3b4b768ec3050bf629380bac",
+            "family": "integer",
+            "n": 18,
+            "correct": 0,
+            "format_only": 0
+          },
+          {
+            "checkpoint": "HuggingFaceTB/SmolLM2-135M-Instruct",
+            "revision": "12fd25f77366fa6b3b4b768ec3050bf629380bac",
+            "family": "uppercase",
+            "n": 18,
+            "correct": 0,
+            "format_only": 0
+          },
+          {
+            "checkpoint": "HuggingFaceTB/SmolLM2-135M-Instruct",
+            "revision": "12fd25f77366fa6b3b4b768ec3050bf629380bac",
+            "family": "csv",
+            "n": 18,
+            "correct": 0,
+            "format_only": 0
+          }
+        ],
+        "caveat": "Discovery and independent confirmation only; no weight edits or transfer claims."
+      }
+    },
+    {
+      "job_id": 139507110330,
+      "conclusion": "success",
+      "summary": {
+        "pilot": "017",
+        "environment": {
+          "checkpoint": "Qwen/Qwen2.5-0.5B-Instruct",
+          "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+          "resolved_checkpoint_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+          "device": "cpu",
+          "dtype": "torch.float32",
+          "transformers": "4.57.6",
+          "torch": "2.15.0+cpu",
+          "python": "3.11.18"
+        },
+        "margin_screened": 81,
+        "generation_evaluated": 10,
+        "practice_frontier": [
+          {
+            "patch": [],
+            "raw_correct": 0,
+            "regression_losses": 0
+          },
+          {
+            "patch": [
+              [
+                23,
+                641,
+                0
+              ],
+              [
+                16,
+                3532,
+                0
+              ],
+              [
+                23,
+                2959,
+                0
+              ],
+              [
+                12,
+                765,
+                0.5
+              ]
+            ],
+            "raw_correct": 8,
+            "regression_losses": 2
+          }
+        ],
+        "variants": {
+          "base": [],
+          "full_jacobian": [
+            [
+              23,
+              641,
+              0
+            ],
+            [
+              16,
+              3532,
+              0
+            ],
+            [
+              23,
+              2959,
+              0
+            ],
+            [
+              12,
+              765,
+              0
+            ]
+          ],
+          "zero_loss_selected": [],
+          "one_loss_selected": []
+        },
+        "evaluations": [
+          {
+            "seed": 17009,
+            "n_per_group": 24,
+            "correct": {
+              "base": {
+                "raw": 0,
+                "fenced": 20,
+                "other": 9
+              },
+              "full_jacobian": {
+                "raw": 18,
+                "fenced": 17,
+                "other": 9
+              },
+              "zero_loss_selected": {
+                "raw": 0,
+                "fenced": 20,
+                "other": 9
+              },
+              "one_loss_selected": {
+                "raw": 0,
+                "fenced": 20,
+                "other": 9
+              }
+            },
+            "paired": {
+              "full_jacobian": {
+                "raw": {
+                  "accuracy_delta_pp": 75,
+                  "ci95_pp": [
+                    58.33,
+                    91.67
+                  ],
+                  "wins": 18,
+                  "losses": 0,
+                  "ties": 6
+                },
+                "fenced": {
+                  "accuracy_delta_pp": -12.5,
+                  "ci95_pp": [
+                    -29.17,
+                    0
+                  ],
+                  "wins": 0,
+                  "losses": 3,
+                  "ties": 21
+                },
+                "other": {
+                  "accuracy_delta_pp": 0,
+                  "ci95_pp": [
+                    0,
+                    0
+                  ],
+                  "wins": 0,
+                  "losses": 0,
+                  "ties": 24
+                }
+              },
+              "zero_loss_selected": {
+                "raw": {
+                  "accuracy_delta_pp": 0,
+                  "ci95_pp": [
+                    0,
+                    0
+                  ],
+                  "wins": 0,
+                  "losses": 0,
+                  "ties": 24
+                },
+                "fenced": {
+                  "accuracy_delta_pp": 0,
+                  "ci95_pp": [
+                    0,
+                    0
+                  ],
+                  "wins": 0,
+                  "losses": 0,
+                  "ties": 24
+                },
+                "other": {
+                  "accuracy_delta_pp": 0,
+                  "ci95_pp": [
+                    0,
+                    0
+                  ],
+                  "wins": 0,
+                  "losses": 0,
+                  "ties": 24
+                }
+              },
+              "one_loss_selected": {
+                "raw": {
+                  "accuracy_delta_pp": 0,
+                  "ci95_pp": [
+                    0,
+                    0
+                  ],
+                  "wins": 0,
+                  "losses": 0,
+                  "ties": 24
+                },
+                "fenced": {
+                  "accuracy_delta_pp": 0,
+                  "ci95_pp": [
+                    0,
+                    0
+                  ],
+                  "wins": 0,
+                  "losses": 0,
+                  "ties": 24
+                },
+                "other": {
+                  "accuracy_delta_pp": 0,
+                  "ci95_pp": [
+                    0,
+                    0
+                  ],
+                  "wins": 0,
+                  "losses": 0,
+                  "ties": 24
+                }
+              }
+            }
+          },
+          {
+            "seed": 17010,
+            "n_per_group": 24,
+            "correct": {
+              "base": {
+                "raw": 0,
+                "fenced": 20,
+                "other": 9
+              },
+              "full_jacobian": {
+                "raw": 18,
+                "fenced": 17,
+                "other": 10
+              },
+              "zero_loss_selected": {
+                "raw": 0,
+                "fenced": 20,
+                "other": 9
+              },
+              "one_loss_selected": {
+                "raw": 0,
+                "fenced": 20,
+                "other": 9
+              }
+            },
+            "paired": {
+              "full_jacobian": {
+                "raw": {
+                  "accuracy_delta_pp": 75,
+                  "ci95_pp": [
+                    58.33,
+                    91.67
+                  ],
+                  "wins": 18,
+                  "losses": 0,
+                  "ties": 6
+                },
+                "fenced": {
+                  "accuracy_delta_pp": -12.5,
+                  "ci95_pp": [
+                    -29.17,
+                    0
+                  ],
+                  "wins": 0,
+                  "losses": 3,
+                  "ties": 21
+                },
+                "other": {
+                  "accuracy_delta_pp": 4.17,
+                  "ci95_pp": [
+                    0,
+                    12.5
+                  ],
+                  "wins": 1,
+                  "losses": 0,
+                  "ties": 23
+                }
+              },
+              "zero_loss_selected": {
+                "raw": {
+                  "accuracy_delta_pp": 0,
+                  "ci95_pp": [
+                    0,
+                    0
+                  ],
+                  "wins": 0,
+                  "losses": 0,
+                  "ties": 24
+                },
+                "fenced": {
+                  "accuracy_delta_pp": 0,
+                  "ci95_pp": [
+                    0,
+                    0
+                  ],
+                  "wins": 0,
+                  "losses": 0,
+                  "ties": 24
+                },
+                "other": {
+                  "accuracy_delta_pp": 0,
+                  "ci95_pp": [
+                    0,
+                    0
+                  ],
+                  "wins": 0,
+                  "losses": 0,
+                  "ties": 24
+                }
+              },
+              "one_loss_selected": {
+                "raw": {
+                  "accuracy_delta_pp": 0,
+                  "ci95_pp": [
+                    0,
+                    0
+                  ],
+                  "wins": 0,
+                  "losses": 0,
+                  "ties": 24
+                },
+                "fenced": {
+                  "accuracy_delta_pp": 0,
+                  "ci95_pp": [
+                    0,
+                    0
+                  ],
+                  "wins": 0,
+                  "losses": 0,
+                  "ties": 24
+                },
+                "other": {
+                  "accuracy_delta_pp": 0,
+                  "ci95_pp": [
+                    0,
+                    0
+                  ],
+                  "wins": 0,
+                  "losses": 0,
+                  "ties": 24
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "job_id": 139507110566,
+      "conclusion": "success",
+      "summary": {
+        "pilot": "016",
+        "environment": {
+          "checkpoint": "Qwen/Qwen2.5-0.5B-Instruct",
+          "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+          "resolved_checkpoint_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+          "device": "cpu",
+          "dtype": "torch.float32",
+          "transformers": "4.57.6",
+          "torch": "2.15.0+cpu",
+          "python": "3.11.18"
+        },
+        "shared_calibration_trials": 6,
+        "trial_budget": 6,
+        "histories": {
+          "editor": [
+            {
+              "trial": 1,
+              "action": {
+                "op": "set",
+                "layer": 12,
+                "channel": 765,
+                "multiplier": 0.5
+              },
+              "patch": [
+                [
+                  12,
+                  765,
+                  0.5
+                ]
+              ],
+              "feedback": {
+                "correct": {
+                  "raw": 0,
+                  "fenced": 6,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "regression_losses": 0,
+                "raw_margin_gain": 0.288154274225235,
+                "fence_margin_harm": 0.19106800854206085,
+                "per_prompt_margin_gain": [
+                  0.2932300567626953,
+                  0.21212196350097656,
+                  0.1652545928955078,
+                  0.09272193908691406,
+                  0.756927490234375,
+                  0.20866966247558594,
+                  0.26383495330810547,
+                  0.23007869720458984,
+                  0.11580467224121094,
+                  0.14445877075195312,
+                  0.1747570037841797,
+                  0.21747398376464844
+                ]
+              },
+              "tokens": [
+                4913,
+                453,
+                3252,
+                746,
+                2198,
+                10333,
+                788,
+                16,
+                17,
+                1335,
+                10119,
+                788,
+                22,
+                21,
+                20,
+                1335,
+                26268,
+                7875,
+                788,
+                15,
+                13,
+                20,
+                92,
+                151645
+              ]
+            },
+            {
+              "trial": 2,
+              "action": {
+                "op": "set",
+                "layer": 12,
+                "channel": 765,
+                "multiplier": 0.75
+              },
+              "patch": [
+                [
+                  12,
+                  765,
+                  0.75
+                ]
+              ],
+              "feedback": {
+                "correct": {
+                  "raw": 0,
+                  "fenced": 6,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "regression_losses": 0,
+                "raw_margin_gain": 0.13520829379558563,
+                "fence_margin_harm": 0.09293889999389648,
+                "per_prompt_margin_gain": [
+                  0.12898540496826172,
+                  0.10190486907958984,
+                  0.07929611206054688,
+                  0.04760456085205078,
+                  0.34928131103515625,
+                  0.10417747497558594,
+                  0.12618541717529297,
+                  0.10713386535644531,
+                  0.053752899169921875,
+                  0.08045005798339844,
+                  0.08333587646484375,
+                  0.10677528381347656
+                ]
+              },
+              "tokens": [
+                4913,
+                453,
+                3252,
+                746,
+                2198,
+                10333,
+                788,
+                16,
+                17,
+                1335,
+                10119,
+                788,
+                22,
+                21,
+                20,
+                1335,
+                26268,
+                7875,
+                788,
+                15,
+                13,
+                22,
+                20,
+                92,
+                151645
+              ]
+            },
+            {
+              "trial": 3,
+              "action": {
+                "op": "set",
+                "layer": 12,
+                "channel": 765,
+                "multiplier": 0.25
+              },
+              "patch": [
+                [
+                  12,
+                  765,
+                  0.25
+                ]
+              ],
+              "feedback": {
+                "correct": {
+                  "raw": 0,
+                  "fenced": 6,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "regression_losses": 0,
+                "raw_margin_gain": 0.46549177169799805,
+                "fence_margin_harm": 0.2954805791378021,
+                "per_prompt_margin_gain": [
+                  0.5065793991088867,
+                  0.3388338088989258,
+                  0.2677574157714844,
+                  0.13692474365234375,
+                  1.2283878326416016,
+                  0.3144674301147461,
+                  0.41092395782470703,
+                  0.37093544006347656,
+                  0.18662071228027344,
+                  0.18578433990478516,
+                  0.2842578887939453,
+                  0.33436107635498047
+                ]
+              },
+              "tokens": [
+                4913,
+                453,
+                3252,
+                746,
+                2198,
+                10333,
+                788,
+                16,
+                17,
+                1335,
+                10119,
+                788,
+                22,
+                21,
+                20,
+                1335,
+                26268,
+                7875,
+                788,
+                15,
+                13,
+                17,
+                20,
+                92,
+                151645
+              ]
+            },
+            {
+              "trial": 4,
+              "action": {
+                "op": "set",
+                "layer": 12,
+                "channel": 765,
+                "multiplier": 0
+              },
+              "patch": [
+                [
+                  12,
+                  765,
+                  0
+                ]
+              ],
+              "feedback": {
+                "correct": {
+                  "raw": 0,
+                  "fenced": 6,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "regression_losses": 0,
+                "raw_margin_gain": 0.6747757792472839,
+                "fence_margin_harm": 0.40963348746299744,
+                "per_prompt_margin_gain": [
+                  0.7843647003173828,
+                  0.49379920959472656,
+                  0.40122222900390625,
+                  0.1840343475341797,
+                  1.761627197265625,
+                  0.42360687255859375,
+                  0.563654899597168,
+                  0.5348796844482422,
+                  0.26763057708740234,
+                  0.2010021209716797,
+                  0.42812156677246094,
+                  0.4625120162963867
+                ]
+              },
+              "tokens": [
+                4913,
+                453,
+                3252,
+                746,
+                2198,
+                10333,
+                788,
+                16,
+                17,
+                1335,
+                10119,
+                788,
+                22,
+                21,
+                20,
+                1335,
+                26268,
+                7875,
+                788,
+                15,
+                13,
+                15,
+                92,
+                151645
+              ]
+            },
+            {
+              "trial": 5,
+              "action": {
+                "op": "set",
+                "layer": 16,
+                "channel": 3532,
+                "multiplier": 0.25
+              },
+              "patch": [
+                [
+                  12,
+                  765,
+                  0
+                ],
+                [
+                  16,
+                  3532,
+                  0.25
+                ]
+              ],
+              "feedback": {
+                "correct": {
+                  "raw": 1,
+                  "fenced": 6,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 1,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "regression_losses": 0,
+                "raw_margin_gain": 2.5630550384521484,
+                "fence_margin_harm": 2.53564190864563,
+                "per_prompt_margin_gain": [
+                  3.1694555282592773,
+                  2.201207160949707,
+                  2.1994123458862305,
+                  1.5146665573120117,
+                  4.507238388061523,
+                  1.7863502502441406,
+                  2.647439956665039,
+                  2.7000904083251953,
+                  1.9706268310546875,
+                  2.0560083389282227,
+                  2.9216651916503906,
+                  2.9180212020874023
+                ]
+              },
+              "tokens": [
+                4913,
+                453,
+                3252,
+                746,
+                2198,
+                10333,
+                788,
+                16,
+                21,
+                1335,
+                10119,
+                788,
+                18,
+                20,
+                18,
+                17,
+                1335,
+                26268,
+                7875,
+                788,
+                15,
+                13,
+                17,
+                20,
+                92,
+                151645
+              ]
+            },
+            {
+              "trial": 6,
+              "action": {
+                "op": "set",
+                "layer": 12,
+                "channel": 765,
+                "multiplier": 0.25
+              },
+              "patch": [
+                [
+                  12,
+                  765,
+                  0.25
+                ],
+                [
+                  16,
+                  3532,
+                  0.25
+                ]
+              ],
+              "feedback": {
+                "correct": {
+                  "raw": 1,
+                  "fenced": 6,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 1,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "regression_losses": 0,
+                "raw_margin_gain": 2.3188624382019043,
+                "fence_margin_harm": 2.3940958976745605,
+                "per_prompt_margin_gain": [
+                  2.8592967987060547,
+                  2.012523651123047,
+                  2.018336296081543,
+                  1.414794921875,
+                  3.955873489379883,
+                  1.6523494720458984,
+                  2.492825508117676,
+                  2.5202407836914062,
+                  1.847848892211914,
+                  2.015242576599121,
+                  2.737423896789551,
+                  2.7509937286376953
+                ]
+              },
+              "tokens": [
+                4913,
+                453,
+                3252,
+                746,
+                2198,
+                10333,
+                788,
+                16,
+                17,
+                1335,
+                10119,
+                788,
+                22,
+                21,
+                20,
+                1335,
+                26268,
+                7875,
+                788,
+                15,
+                13,
+                17,
+                20,
+                92,
+                151645
+              ]
+            }
+          ],
+          "greedy": [
+            {
+              "trial": 1,
+              "action": {
+                "op": "set",
+                "layer": 12,
+                "channel": 765,
+                "multiplier": 0
+              },
+              "patch": [
+                [
+                  12,
+                  765,
+                  0
+                ]
+              ],
+              "feedback": {
+                "correct": {
+                  "raw": 0,
+                  "fenced": 6,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "regression_losses": 0,
+                "raw_margin_gain": 0.6747757792472839,
+                "fence_margin_harm": 0.40963348746299744,
+                "per_prompt_margin_gain": [
+                  0.7843647003173828,
+                  0.49379920959472656,
+                  0.40122222900390625,
+                  0.1840343475341797,
+                  1.761627197265625,
+                  0.42360687255859375,
+                  0.563654899597168,
+                  0.5348796844482422,
+                  0.26763057708740234,
+                  0.2010021209716797,
+                  0.42812156677246094,
+                  0.4625120162963867
+                ]
+              },
+              "tokens": []
+            },
+            {
+              "trial": 2,
+              "action": {
+                "op": "set",
+                "layer": 20,
+                "channel": 4752,
+                "multiplier": 0
+              },
+              "patch": [
+                [
+                  12,
+                  765,
+                  0
+                ],
+                [
+                  20,
+                  4752,
+                  0
+                ]
+              ],
+              "feedback": {
+                "correct": {
+                  "raw": 1,
+                  "fenced": 6,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 1,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "regression_losses": 0,
+                "raw_margin_gain": 0.7655951380729675,
+                "fence_margin_harm": 0.42652273178100586,
+                "per_prompt_margin_gain": [
+                  0.8675909042358398,
+                  0.5932016372680664,
+                  0.5264444351196289,
+                  0.20320796966552734,
+                  2.0161304473876953,
+                  0.3869953155517578,
+                  0.5620059967041016,
+                  0.5439538955688477,
+                  0.27631378173828125,
+                  0.22286415100097656,
+                  0.47991371154785156,
+                  0.47408485412597656
+                ]
+              },
+              "tokens": []
+            },
+            {
+              "trial": 3,
+              "action": {
+                "op": "set",
+                "layer": 23,
+                "channel": 2959,
+                "multiplier": 0
+              },
+              "patch": [
+                [
+                  12,
+                  765,
+                  0
+                ],
+                [
+                  20,
+                  4752,
+                  0
+                ],
+                [
+                  23,
+                  2959,
+                  0
+                ]
+              ],
+              "feedback": {
+                "correct": {
+                  "raw": 1,
+                  "fenced": 6,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 1,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "regression_losses": 0,
+                "raw_margin_gain": 0.8027899861335754,
+                "fence_margin_harm": 0.41112789511680603,
+                "per_prompt_margin_gain": [
+                  0.8352422714233398,
+                  0.5486106872558594,
+                  0.5034046173095703,
+                  0.18773174285888672,
+                  2.4550209045410156,
+                  0.2867298126220703,
+                  0.5031585693359375,
+                  0.39209747314453125,
+                  0.23632049560546875,
+                  0.08733749389648438,
+                  0.8024253845214844,
+                  0.44542789459228516
+                ]
+              },
+              "tokens": []
+            },
+            {
+              "trial": 4,
+              "action": {
+                "op": "set",
+                "layer": 23,
+                "channel": 2959,
+                "multiplier": 0.25
+              },
+              "patch": [
+                [
+                  12,
+                  765,
+                  0
+                ],
+                [
+                  20,
+                  4752,
+                  0
+                ],
+                [
+                  23,
+                  2959,
+                  0.25
+                ]
+              ],
+              "feedback": {
+                "correct": {
+                  "raw": 1,
+                  "fenced": 6,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 1,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "regression_losses": 0,
+                "raw_margin_gain": 0.793498694896698,
+                "fence_margin_harm": 0.4149414598941803,
+                "per_prompt_margin_gain": [
+                  0.8433322906494141,
+                  0.5597524642944336,
+                  0.5091638565063477,
+                  0.19160079956054688,
+                  2.345348358154297,
+                  0.3117942810058594,
+                  0.5178670883178711,
+                  0.4300355911254883,
+                  0.24631500244140625,
+                  0.12119579315185547,
+                  0.7216472625732422,
+                  0.4525880813598633
+                ]
+              },
+              "tokens": []
+            },
+            {
+              "trial": 5,
+              "action": {
+                "op": "set",
+                "layer": 23,
+                "channel": 2959,
+                "multiplier": 0.5
+              },
+              "patch": [
+                [
+                  12,
+                  765,
+                  0
+                ],
+                [
+                  20,
+                  4752,
+                  0
+                ],
+                [
+                  23,
+                  2959,
+                  0.5
+                ]
+              ],
+              "feedback": {
+                "correct": {
+                  "raw": 1,
+                  "fenced": 6,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 1,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "regression_losses": 0,
+                "raw_margin_gain": 0.7842018008232117,
+                "fence_margin_harm": 0.4187788963317871,
+                "per_prompt_margin_gain": [
+                  0.851414680480957,
+                  0.5709047317504883,
+                  0.514923095703125,
+                  0.1954660415649414,
+                  2.2356414794921875,
+                  0.33686065673828125,
+                  0.5325784683227539,
+                  0.46799659729003906,
+                  0.2563142776489258,
+                  0.15506458282470703,
+                  0.6409626007080078,
+                  0.45975685119628906
+                ]
+              },
+              "tokens": []
+            },
+            {
+              "trial": 6,
+              "action": {
+                "op": "set",
+                "layer": 23,
+                "channel": 2959,
+                "multiplier": 0.75
+              },
+              "patch": [
+                [
+                  12,
+                  765,
+                  0
+                ],
+                [
+                  20,
+                  4752,
+                  0
+                ],
+                [
+                  23,
+                  2959,
+                  0.75
+                ]
+              ],
+              "feedback": {
+                "correct": {
+                  "raw": 1,
+                  "fenced": 6,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 1,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "regression_losses": 0,
+                "raw_margin_gain": 0.7749002575874329,
+                "fence_margin_harm": 0.42263731360435486,
+                "per_prompt_margin_gain": [
+                  0.8595027923583984,
+                  0.5820541381835938,
+                  0.5206804275512695,
+                  0.1993408203125,
+                  2.1258983612060547,
+                  0.3619251251220703,
+                  0.5472898483276367,
+                  0.5059690475463867,
+                  0.2663135528564453,
+                  0.18895244598388672,
+                  0.5603809356689453,
+                  0.4669179916381836
+                ]
+              },
+              "tokens": []
+            }
+          ],
+          "random": [
+            {
+              "trial": 1,
+              "action": {
+                "op": "set",
+                "layer": 23,
+                "channel": 2959,
+                "multiplier": 0.5
+              },
+              "patch": [
+                [
+                  23,
+                  2959,
+                  0.5
+                ]
+              ],
+              "feedback": {
+                "correct": {
+                  "raw": 0,
+                  "fenced": 6,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "regression_losses": 0,
+                "raw_margin_gain": 0.025343259796500206,
+                "fence_margin_harm": 0.02369467355310917,
+                "per_prompt_margin_gain": [
+                  -0.02208995819091797,
+                  -0.028100967407226562,
+                  -0.023267745971679688,
+                  -0.006323814392089844,
+                  0.2811412811279297,
+                  -0.04929924011230469,
+                  -0.03214550018310547,
+                  -0.0699911117553711,
+                  -0.025777816772460938,
+                  -0.0682382583618164,
+                  0.1421680450439453,
+                  -0.020212173461914062
+                ]
+              },
+              "tokens": []
+            },
+            {
+              "trial": 2,
+              "action": {
+                "op": "set",
+                "layer": 20,
+                "channel": 4752,
+                "multiplier": 0.5
+              },
+              "patch": [
+                [
+                  20,
+                  4752,
+                  0.5
+                ],
+                [
+                  23,
+                  2959,
+                  0.5
+                ]
+              ],
+              "feedback": {
+                "correct": {
+                  "raw": 0,
+                  "fenced": 6,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "regression_losses": 0,
+                "raw_margin_gain": 0.07232173532247543,
+                "fence_margin_harm": 0.02808094024658203,
+                "per_prompt_margin_gain": [
+                  0.014101982116699219,
+                  0.024988174438476562,
+                  0.029201507568359375,
+                  0.009655952453613281,
+                  0.41615867614746094,
+                  -0.06017589569091797,
+                  -0.03537464141845703,
+                  -0.06788158416748047,
+                  -0.0226898193359375,
+                  -0.057944297790527344,
+                  0.1684856414794922,
+                  -0.015900611877441406
+                ]
+              },
+              "tokens": []
+            },
+            {
+              "trial": 3,
+              "action": {
+                "op": "set",
+                "layer": 23,
+                "channel": 641,
+                "multiplier": 0.25
+              },
+              "patch": [
+                [
+                  20,
+                  4752,
+                  0.5
+                ],
+                [
+                  23,
+                  641,
+                  0.25
+                ],
+                [
+                  23,
+                  2959,
+                  0.5
+                ]
+              ],
+              "feedback": {
+                "correct": {
+                  "raw": 1,
+                  "fenced": 5,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 1,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 1,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "regression_losses": 1,
+                "raw_margin_gain": 0.7110150456428528,
+                "fence_margin_harm": 0.0018421808490529656,
+                "per_prompt_margin_gain": [
+                  0.15670490264892578,
+                  0.5784511566162109,
+                  0.4937448501586914,
+                  0.9514532089233398,
+                  1.7156009674072266,
+                  0.3701353073120117,
+                  -0.2226572036743164,
+                  -0.29602813720703125,
+                  -0.12136650085449219,
+                  -0.2549324035644531,
+                  0.011053085327148438,
+                  -0.2009296417236328
+                ]
+              },
+              "tokens": []
+            },
+            {
+              "trial": 4,
+              "action": {
+                "op": "set",
+                "layer": 23,
+                "channel": 2959,
+                "multiplier": 0.75
+              },
+              "patch": [
+                [
+                  20,
+                  4752,
+                  0.5
+                ],
+                [
+                  23,
+                  2959,
+                  0.75
+                ]
+              ],
+              "feedback": {
+                "correct": {
+                  "raw": 0,
+                  "fenced": 6,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "regression_losses": 0,
+                "raw_margin_gain": 0.05797751620411873,
+                "fence_margin_harm": 0.01607799530029297,
+                "per_prompt_margin_gain": [
+                  0.024381637573242188,
+                  0.037947654724121094,
+                  0.038422584533691406,
+                  0.010850906372070312,
+                  0.27252960205078125,
+                  -0.03626728057861328,
+                  -0.019147872924804688,
+                  -0.032904624938964844,
+                  -0.0098114013671875,
+                  -0.024072647094726562,
+                  0.09646797180175781,
+                  -0.00586700439453125
+                ]
+              },
+              "tokens": []
+            },
+            {
+              "trial": 5,
+              "action": {
+                "op": "set",
+                "layer": 23,
+                "channel": 785,
+                "multiplier": 0.25
+              },
+              "patch": [
+                [
+                  20,
+                  4752,
+                  0.5
+                ],
+                [
+                  23,
+                  785,
+                  0.25
+                ],
+                [
+                  23,
+                  2959,
+                  0.5
+                ]
+              ],
+              "feedback": {
+                "correct": {
+                  "raw": 0,
+                  "fenced": 6,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "regression_losses": 0,
+                "raw_margin_gain": -0.1447056084871292,
+                "fence_margin_harm": 0.07757568359375,
+                "per_prompt_margin_gain": [
+                  -0.26209545135498047,
+                  -0.2024087905883789,
+                  -0.37903785705566406,
+                  -0.2185201644897461,
+                  0.6917037963867188,
+                  -0.4978752136230469,
+                  -0.00308990478515625,
+                  -0.18434906005859375,
+                  -0.010595321655273438,
+                  -0.3119935989379883,
+                  0.4654541015625,
+                  -0.015064239501953125
+                ]
+              },
+              "tokens": []
+            },
+            {
+              "trial": 6,
+              "action": {
+                "op": "set",
+                "layer": 16,
+                "channel": 3532,
+                "multiplier": 0.5
+              },
+              "patch": [
+                [
+                  16,
+                  3532,
+                  0.5
+                ],
+                [
+                  20,
+                  4752,
+                  0.5
+                ],
+                [
+                  23,
+                  2959,
+                  0.5
+                ]
+              ],
+              "feedback": {
+                "correct": {
+                  "raw": 1,
+                  "fenced": 6,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 1,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "regression_losses": 0,
+                "raw_margin_gain": 1.2720403671264648,
+                "fence_margin_harm": 1.2928873300552368,
+                "per_prompt_margin_gain": [
+                  1.5166444778442383,
+                  1.1262445449829102,
+                  1.190566062927246,
+                  0.8114089965820312,
+                  2.1822280883789062,
+                  0.805150032043457,
+                  1.290517807006836,
+                  1.2941350936889648,
+                  0.9099225997924805,
+                  1.0661535263061523,
+                  1.7378301620483398,
+                  1.4587650299072266
+                ]
+              },
+              "tokens": []
+            }
+          ]
+        },
+        "variants": {
+          "base": [],
+          "jacobian": [
+            [
+              23,
+              641,
+              0
+            ],
+            [
+              16,
+              3532,
+              0
+            ],
+            [
+              23,
+              2959,
+              0
+            ],
+            [
+              12,
+              765,
+              0
+            ]
+          ],
+          "editor_selected": [
+            [
+              12,
+              765,
+              0
+            ],
+            [
+              16,
+              3532,
+              0.25
+            ]
+          ],
+          "editor_first": [
+            [
+              12,
+              765,
+              0.5
+            ]
+          ],
+          "greedy_selected": [
+            [
+              12,
+              765,
+              0
+            ],
+            [
+              20,
+              4752,
+              0
+            ],
+            [
+              23,
+              2959,
+              0
+            ]
+          ],
+          "greedy_first": [
+            [
+              12,
+              765,
+              0
+            ]
+          ],
+          "random_selected": [
+            [
+              16,
+              3532,
+              0.5
+            ],
+            [
+              20,
+              4752,
+              0.5
+            ],
+            [
+              23,
+              2959,
+              0.5
+            ]
+          ],
+          "random_first": [
+            [
+              23,
+              2959,
+              0.5
+            ]
+          ]
+        },
+        "evaluation": {
+          "seed": 16009,
+          "n_per_group": 24,
+          "correct": {
+            "base": {
+              "raw": 0,
+              "fenced": 19,
+              "other": 11
+            },
+            "jacobian": {
+              "raw": 18,
+              "fenced": 17,
+              "other": 11
+            },
+            "editor_selected": {
+              "raw": 4,
+              "fenced": 18,
+              "other": 11
+            },
+            "editor_first": {
+              "raw": 1,
+              "fenced": 18,
+              "other": 11
+            },
+            "greedy_selected": {
+              "raw": 4,
+              "fenced": 18,
+              "other": 11
+            },
+            "greedy_first": {
+              "raw": 3,
+              "fenced": 18,
+              "other": 11
+            },
+            "random_selected": {
+              "raw": 4,
+              "fenced": 19,
+              "other": 11
+            },
+            "random_first": {
+              "raw": 0,
+              "fenced": 19,
+              "other": 11
+            }
+          },
+          "paired": {
+            "jacobian": {
+              "raw": {
+                "accuracy_delta_pp": 75,
+                "ci95_pp": [
+                  58.33,
+                  91.67
+                ],
+                "wins": 18,
+                "losses": 0,
+                "ties": 6
+              },
+              "fenced": {
+                "accuracy_delta_pp": -8.33,
+                "ci95_pp": [
+                  -20.83,
+                  0
+                ],
+                "wins": 0,
+                "losses": 2,
+                "ties": 22
+              },
+              "other": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 24
+              }
+            },
+            "editor_selected": {
+              "raw": {
+                "accuracy_delta_pp": 16.67,
+                "ci95_pp": [
+                  4.17,
+                  33.33
+                ],
+                "wins": 4,
+                "losses": 0,
+                "ties": 20
+              },
+              "fenced": {
+                "accuracy_delta_pp": -4.17,
+                "ci95_pp": [
+                  -12.5,
+                  0
+                ],
+                "wins": 0,
+                "losses": 1,
+                "ties": 23
+              },
+              "other": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 24
+              }
+            },
+            "editor_first": {
+              "raw": {
+                "accuracy_delta_pp": 4.17,
+                "ci95_pp": [
+                  0,
+                  12.5
+                ],
+                "wins": 1,
+                "losses": 0,
+                "ties": 23
+              },
+              "fenced": {
+                "accuracy_delta_pp": -4.17,
+                "ci95_pp": [
+                  -12.5,
+                  0
+                ],
+                "wins": 0,
+                "losses": 1,
+                "ties": 23
+              },
+              "other": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 24
+              }
+            },
+            "greedy_selected": {
+              "raw": {
+                "accuracy_delta_pp": 16.67,
+                "ci95_pp": [
+                  4.17,
+                  33.33
+                ],
+                "wins": 4,
+                "losses": 0,
+                "ties": 20
+              },
+              "fenced": {
+                "accuracy_delta_pp": -4.17,
+                "ci95_pp": [
+                  -12.5,
+                  0
+                ],
+                "wins": 0,
+                "losses": 1,
+                "ties": 23
+              },
+              "other": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 24
+              }
+            },
+            "greedy_first": {
+              "raw": {
+                "accuracy_delta_pp": 12.5,
+                "ci95_pp": [
+                  0,
+                  25
+                ],
+                "wins": 3,
+                "losses": 0,
+                "ties": 21
+              },
+              "fenced": {
+                "accuracy_delta_pp": -4.17,
+                "ci95_pp": [
+                  -12.5,
+                  0
+                ],
+                "wins": 0,
+                "losses": 1,
+                "ties": 23
+              },
+              "other": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 24
+              }
+            },
+            "random_selected": {
+              "raw": {
+                "accuracy_delta_pp": 16.67,
+                "ci95_pp": [
+                  4.17,
+                  33.33
+                ],
+                "wins": 4,
+                "losses": 0,
+                "ties": 20
+              },
+              "fenced": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 24
+              },
+              "other": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 24
+              }
+            },
+            "random_first": {
+              "raw": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 24
+              },
+              "fenced": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 24
+              },
+              "other": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 24
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Pilots 016–018: regression-aware editing
 
-Status: submitted for CPU CI; no results claimed.
+Status: completed; 51 tests passed per job.
 
 016 supplies the pinned Qwen Coder editor with shared single-neuron calibration
 on actual extraction practice tasks, continuous raw and required-fence margin
@@ -34,3 +34,13 @@ and revisions. No edits or claims of cross-architecture transfer.
 
 All CPU jobs have 180-minute limits and preserve raw artifacts. No paid API
 or GPU requested. Benchmarks remain synthetic.
+
+## Verified outcomes
+
+016: editor/greedy/random selected patches each 4/24 raw vs 0/24 base, paired CI [4.17,33.33] pp. Editor first 1/24, greedy first 3/24, random first 0/24. Editor and greedy each lost one required fence; random none. Jacobian 18/24 raw with two fence losses. No demonstrated editor superiority. One realization only.
+
+017: 81 margin-screened, ten generation-tested. Practice nondominated points were base (0 raw,0 losses) and partial patch (8 raw,2 losses), with layer 12 channel 765 at 0.5 and other Jacobian columns at zero. Both predeclared constrained selectors retained base. Full Jacobian held-out raw/fenced/other 36/34/19 vs 0/40/18, 37 wins and six losses, 89/144 vs 58/144. Partial frontier patch was not held-out tested.
+
+018: 0/180 eligible wrapper-only failures, no confirmation triggered, no intervention. This does not establish absence of other repairable errors.
+
+[Exact summaries](../results/regression-editor-016-018.json) · [Raw artifacts](https://github.com/KevinmKrieg/weight-smithing/actions/runs/45699944755).
