@@ -1,0 +1,587 @@
+{
+  "run_id": 45659572618,
+  "source": "verified GitHub Actions logs",
+  "artifacts": [
+    {
+      "id": 15046246373,
+      "name": "neuron-validation-008",
+      "expired": false
+    },
+    {
+      "id": 15045952359,
+      "name": "neuron-validation-007",
+      "expired": false
+    },
+    {
+      "id": 15044483908,
+      "name": "neuron-validation-009",
+      "expired": false
+    }
+  ],
+  "results": [
+    {
+      "job_id": 139365437350,
+      "conclusion": "success",
+      "summary": {
+        "pilot": "008",
+        "variants": {
+          "base": [],
+          "direct_lens": [
+            [
+              23,
+              641,
+              0
+            ],
+            [
+              23,
+              2959,
+              0
+            ],
+            [
+              20,
+              4752,
+              0
+            ],
+            [
+              23,
+              785,
+              0
+            ]
+          ],
+          "jacobian": [
+            [
+              23,
+              641,
+              0
+            ],
+            [
+              16,
+              3532,
+              0
+            ],
+            [
+              23,
+              2959,
+              0
+            ],
+            [
+              12,
+              765,
+              0
+            ]
+          ],
+          "causal_union": [
+            [
+              23,
+              641,
+              0
+            ],
+            [
+              16,
+              3532,
+              0
+            ],
+            [
+              23,
+              2959,
+              0
+            ],
+            [
+              12,
+              765,
+              0
+            ]
+          ]
+        },
+        "prediction_metrics": {
+          "direct_prediction": {
+            "mae": 0.641758707979736,
+            "pearson": 0.7737715413324852
+          },
+          "jacobian_prediction": {
+            "mae": 0.07376911198500441,
+            "pearson": 0.9901516054796848
+          }
+        },
+        "evaluation": {
+          "seed": 90801,
+          "raw_json_n": 24,
+          "unrelated_n": 24,
+          "required_fences_n": 24,
+          "heldout": {
+            "base": {
+              "n": 48,
+              "accuracy": 0.375,
+              "mean_tokens": 12.5625,
+              "length_cap_rate": 0,
+              "mean_repeat4": 0,
+              "accuracy_by_family": {
+                "arithmetic": 0.875,
+                "json": 0,
+                "uppercase": 1,
+                "selection": 0.375
+              }
+            },
+            "direct_lens": {
+              "n": 48,
+              "accuracy": 0.5416666666666666,
+              "mean_tokens": 13.020833333333334,
+              "length_cap_rate": 0,
+              "mean_repeat4": 0.0037874999999999996,
+              "accuracy_by_family": {
+                "arithmetic": 0.875,
+                "json": 0.3333333333333333,
+                "uppercase": 1,
+                "selection": 0.375
+              }
+            },
+            "jacobian": {
+              "n": 48,
+              "accuracy": 0.6458333333333334,
+              "mean_tokens": 13.416666666666666,
+              "length_cap_rate": 0,
+              "mean_repeat4": 0,
+              "accuracy_by_family": {
+                "arithmetic": 0.875,
+                "json": 0.5833333333333334,
+                "uppercase": 1,
+                "selection": 0.25
+              }
+            },
+            "causal_union": {
+              "n": 48,
+              "accuracy": 0.6458333333333334,
+              "mean_tokens": 13.416666666666666,
+              "length_cap_rate": 0,
+              "mean_repeat4": 0,
+              "accuracy_by_family": {
+                "arithmetic": 0.875,
+                "json": 0.5833333333333334,
+                "uppercase": 1,
+                "selection": 0.25
+              }
+            }
+          },
+          "vs_base": {
+            "direct_lens": {
+              "accuracy_delta_pp": 16.67,
+              "ci95_pp": [
+                6.25,
+                27.08
+              ],
+              "wins": 8,
+              "losses": 0,
+              "ties": 40
+            },
+            "jacobian": {
+              "accuracy_delta_pp": 27.08,
+              "ci95_pp": [
+                14.58,
+                41.67
+              ],
+              "wins": 14,
+              "losses": 1,
+              "ties": 33
+            },
+            "causal_union": {
+              "accuracy_delta_pp": 27.08,
+              "ci95_pp": [
+                14.58,
+                41.67
+              ],
+              "wins": 14,
+              "losses": 1,
+              "ties": 33
+            }
+          },
+          "required_fences": {
+            "base": 0.9166666666666666,
+            "direct_lens": 0.8333333333333334,
+            "jacobian": 0.875,
+            "causal_union": 0.875
+          },
+          "fence_vs_base": {
+            "direct_lens": {
+              "accuracy_delta_pp": -8.33,
+              "ci95_pp": [
+                -20.83,
+                0
+              ],
+              "wins": 0,
+              "losses": 2,
+              "ties": 22
+            },
+            "jacobian": {
+              "accuracy_delta_pp": -4.17,
+              "ci95_pp": [
+                -20.83,
+                8.33
+              ],
+              "wins": 1,
+              "losses": 2,
+              "ties": 21
+            },
+            "causal_union": {
+              "accuracy_delta_pp": -4.17,
+              "ci95_pp": [
+                -20.83,
+                8.33
+              ],
+              "wins": 1,
+              "losses": 2,
+              "ties": 21
+            }
+          }
+        }
+      }
+    },
+    {
+      "job_id": 139365437916,
+      "conclusion": "success",
+      "summary": {
+        "pilot": "009",
+        "status": "invalid_editor_proposal",
+        "error": "Expecting value: line 1 column 1 (char 0)",
+        "caveat": "No fallback or manual repair; no autonomous patch evaluated."
+      }
+    },
+    {
+      "job_id": 139365438035,
+      "conclusion": "success",
+      "summary": {
+        "pilot": "007",
+        "variants": {
+          "base": [],
+          "fixed_causal": [
+            [
+              23,
+              641,
+              0
+            ],
+            [
+              23,
+              1057,
+              0
+            ],
+            [
+              20,
+              266,
+              0
+            ],
+            [
+              20,
+              4752,
+              0
+            ]
+          ],
+          "fixed_activation": [
+            [
+              20,
+              467,
+              0
+            ],
+            [
+              20,
+              4474,
+              0
+            ],
+            [
+              23,
+              1396,
+              0
+            ],
+            [
+              23,
+              641,
+              0
+            ]
+          ],
+          "fixed_random": [
+            [
+              20,
+              975,
+              0
+            ],
+            [
+              20,
+              4544,
+              0
+            ],
+            [
+              23,
+              1669,
+              0
+            ],
+            [
+              23,
+              4252,
+              0
+            ]
+          ]
+        },
+        "seeds": [
+          {
+            "seed": 90701,
+            "raw_json_n": 24,
+            "unrelated_n": 24,
+            "required_fences_n": 24,
+            "heldout": {
+              "base": {
+                "n": 48,
+                "accuracy": 0.3333333333333333,
+                "mean_tokens": 11.833333333333334,
+                "length_cap_rate": 0,
+                "mean_repeat4": 0,
+                "accuracy_by_family": {
+                  "arithmetic": 0.875,
+                  "json": 0,
+                  "uppercase": 1,
+                  "selection": 0.125
+                }
+              },
+              "fixed_causal": {
+                "n": 48,
+                "accuracy": 0.5,
+                "mean_tokens": 12.895833333333334,
+                "length_cap_rate": 0,
+                "mean_repeat4": 0.0018937499999999998,
+                "accuracy_by_family": {
+                  "arithmetic": 0.875,
+                  "json": 0.3333333333333333,
+                  "uppercase": 1,
+                  "selection": 0.125
+                }
+              },
+              "fixed_activation": {
+                "n": 48,
+                "accuracy": 0.3958333333333333,
+                "mean_tokens": 13.166666666666666,
+                "length_cap_rate": 0,
+                "mean_repeat4": 0.0009468749999999999,
+                "accuracy_by_family": {
+                  "arithmetic": 0.875,
+                  "json": 0.16666666666666666,
+                  "uppercase": 0.875,
+                  "selection": 0.125
+                }
+              },
+              "fixed_random": {
+                "n": 48,
+                "accuracy": 0.3333333333333333,
+                "mean_tokens": 11.833333333333334,
+                "length_cap_rate": 0,
+                "mean_repeat4": 0,
+                "accuracy_by_family": {
+                  "arithmetic": 0.875,
+                  "json": 0,
+                  "uppercase": 1,
+                  "selection": 0.125
+                }
+              }
+            },
+            "vs_base": {
+              "fixed_causal": {
+                "accuracy_delta_pp": 16.67,
+                "ci95_pp": [
+                  6.25,
+                  27.08
+                ],
+                "wins": 8,
+                "losses": 0,
+                "ties": 40
+              },
+              "fixed_activation": {
+                "accuracy_delta_pp": 6.25,
+                "ci95_pp": [
+                  -2.08,
+                  16.67
+                ],
+                "wins": 4,
+                "losses": 1,
+                "ties": 43
+              },
+              "fixed_random": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 48
+              }
+            },
+            "required_fences": {
+              "base": 0.875,
+              "fixed_causal": 0.8333333333333334,
+              "fixed_activation": 0.875,
+              "fixed_random": 0.875
+            },
+            "fence_vs_base": {
+              "fixed_causal": {
+                "accuracy_delta_pp": -4.17,
+                "ci95_pp": [
+                  -12.5,
+                  0
+                ],
+                "wins": 0,
+                "losses": 1,
+                "ties": 23
+              },
+              "fixed_activation": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 24
+              },
+              "fixed_random": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 24
+              }
+            }
+          },
+          {
+            "seed": 90702,
+            "raw_json_n": 24,
+            "unrelated_n": 24,
+            "required_fences_n": 24,
+            "heldout": {
+              "base": {
+                "n": 48,
+                "accuracy": 0.3125,
+                "mean_tokens": 10.979166666666666,
+                "length_cap_rate": 0,
+                "mean_repeat4": 0,
+                "accuracy_by_family": {
+                  "arithmetic": 0.75,
+                  "json": 0,
+                  "uppercase": 1,
+                  "selection": 0.125
+                }
+              },
+              "fixed_causal": {
+                "n": 48,
+                "accuracy": 0.4791666666666667,
+                "mean_tokens": 12.520833333333334,
+                "length_cap_rate": 0,
+                "mean_repeat4": 0.0018937499999999998,
+                "accuracy_by_family": {
+                  "arithmetic": 0.75,
+                  "json": 0.3333333333333333,
+                  "uppercase": 1,
+                  "selection": 0.125
+                }
+              },
+              "fixed_activation": {
+                "n": 48,
+                "accuracy": 0.375,
+                "mean_tokens": 12.6875,
+                "length_cap_rate": 0,
+                "mean_repeat4": 0,
+                "accuracy_by_family": {
+                  "arithmetic": 0.75,
+                  "json": 0.16666666666666666,
+                  "uppercase": 1,
+                  "selection": 0
+                }
+              },
+              "fixed_random": {
+                "n": 48,
+                "accuracy": 0.3125,
+                "mean_tokens": 11.229166666666666,
+                "length_cap_rate": 0,
+                "mean_repeat4": 0,
+                "accuracy_by_family": {
+                  "arithmetic": 0.75,
+                  "json": 0,
+                  "uppercase": 1,
+                  "selection": 0.125
+                }
+              }
+            },
+            "vs_base": {
+              "fixed_causal": {
+                "accuracy_delta_pp": 16.67,
+                "ci95_pp": [
+                  6.25,
+                  27.08
+                ],
+                "wins": 8,
+                "losses": 0,
+                "ties": 40
+              },
+              "fixed_activation": {
+                "accuracy_delta_pp": 6.25,
+                "ci95_pp": [
+                  -2.08,
+                  16.67
+                ],
+                "wins": 4,
+                "losses": 1,
+                "ties": 43
+              },
+              "fixed_random": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 48
+              }
+            },
+            "required_fences": {
+              "base": 0.9166666666666666,
+              "fixed_causal": 0.875,
+              "fixed_activation": 0.9166666666666666,
+              "fixed_random": 0.9166666666666666
+            },
+            "fence_vs_base": {
+              "fixed_causal": {
+                "accuracy_delta_pp": -4.17,
+                "ci95_pp": [
+                  -12.5,
+                  0
+                ],
+                "wins": 0,
+                "losses": 1,
+                "ties": 23
+              },
+              "fixed_activation": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 24
+              },
+              "fixed_random": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 24
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

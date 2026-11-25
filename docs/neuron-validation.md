@@ -1,6 +1,6 @@
 # Pilots 007–009: replication, downstream derivatives, autonomous editing
 
-Status: submitted for CPU CI; no new results claimed before completed runs.
+Status: all three CPU jobs completed successfully; 42 tests passed in each job. Pilot 009 is a negative scientific result despite successful CI.
 
 007 freezes all three prior four-column patches before generating two fresh evaluation
 sets (seeds 90701 and 90702), each with 24 raw JSON and 24 paired fenced JSON tasks,
@@ -37,3 +37,11 @@ Run locally:
     python -m weightsmith.neuron_validation --pilot 007 --out artifacts/pilot-007
     python -m weightsmith.neuron_validation --pilot 008 --out artifacts/pilot-008
     python -m weightsmith.neuron_validation --pilot 009 --out artifacts/pilot-009
+
+## Verified outcomes
+
+- 007: fixed causal patch 47/96 versus base and random 31/96, activation-only 37/96. Both seeds gained 8/48, with 95% paired bootstrap CI +6.25 to +27.08 pp each. Required fences 41/48 versus 43/48 base; two losses. No unrelated losses for causal patch.
+- 008: Jacobian and causal union selected identical four columns. MAE 0.073769 vs 0.641759 for direct lens; Pearson 0.990152 vs 0.773772 on selected candidates only. Jacobian 31/48 vs base 18/48 and direct 26/48; +27.08 pp [14.58,41.67], 14 wins, one loss. Required fences 21/24 vs 22/24 (one win, two losses). Selection accuracy declined from 3/8 to 2/8. Not a full J-lens replication or regression-free repair.
+- 009: invalid JSON, parser error at line 1 column 1; no patch evaluated, no fallback. Do not infer editor efficacy.
+
+[Exact job summaries and artifact IDs](../results/neuron-validation-007-009.json), parsed from successful job logs. [Raw run artifacts](https://github.com/KevinmKrieg/weight-smithing/actions/runs/45659572618).
