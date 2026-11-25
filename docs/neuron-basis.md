@@ -42,18 +42,33 @@ Run:
 Artifacts: atlas.json, causal-atlas.json, locked-patch.json, summary.json,
 examples.json, required-fences.json. CI uploads them even after partial failure.
 
-## Pilot 005: blind benign-behavior auditing (planned)
+## Pilot 005: closed-set synthetic benign-direction audit
 
-Prepare separate patches/adapters for benign changes (language, brevity, rhyme, formatting),
-with ground truth hidden from auditor, including null controls. Compare output-only,
-weight-delta-only, and neuron-readout-assisted LLM auditors; keep the same model and
-inference budget. Verify behavior before including a patch. Report blind exact concept
-accuracy and false positives, not anecdotal successful guesses. No results yet.
+Implemented as a deliberately small first rung, not a full blind LLM or LoRA audit.
+Create six direction patches (two each for arithmetic, French and cooking) in late
+MLP down-projection columns, plus two unmodified null cases. Patch magnitudes are
+relative to the original column norms; direction exemplars are distinct from the
+auditor's vocabulary. Patches and nulls are randomly ordered with opaque IDs.
+An independent set of prompts checks whether the intended next-token logit shift
+actually occurs. Compare output-logit, signed weight-readout and weight-assisted
+heuristics; report all cases and the separately validated subset. This is a
+closed-set toy test, not a test of learned hidden behavior. Export blind packets,
+predictions and ground truth separately for a subsequent LLM audit. No API key
+required. Do not infer verified free-generation behavior from logit shifts.
 
-## Pilot 006: native neuron concept detection (planned)
+## Pilot 006: few-shot native neuron concept detection
 
-Start with benign semantic concepts, e.g. French, arithmetic and cooking, using disjoint
-selection and evaluation texts and hard negatives. Compare signed neuron activation
-or residual-direction cosine scoring to keyword, embedding-similarity and supervised
-probe baselines. Report AUROC and uncertainty on unseen prompts. Distinguish truly
-zero-label selection from few-shot selection using labeled examples. No results yet.
+Use 18 labeled selection texts for three benign concepts (arithmetic, French,
+cooking), and 36 held-out texts including keyword-confusable hard negatives.
+Select eight native neurons per concept using signed standardized mean activation
+contrasts across four layers. Lock neuron IDs and signs before processing the
+test set. Compare native activation scores to keyword matching, hidden-state
+centroid similarity and supervised ridge probes fitted on the same training set.
+Report per-concept and macro AUROC, with raw per-text scores. This is few-shot
+rather than the zero-label detector in the Anthropic post, and synthetic examples
+are too few for strong generalization claims.
+
+Run both applications with:
+    python -m weightsmith.neuron_applications --device cpu
+
+No measured results claimed until CI has actually completed.
