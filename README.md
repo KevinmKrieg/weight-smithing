@@ -96,6 +96,8 @@ Pilots 005–006: all three auditing heuristics correctly identified 8/8 synthet
 
 ## Next research steps
 
+[Validation pilots 007–009](docs/neuron-validation.md) extend the internal edit to fresh prompt templates, compare target-specific downstream Jacobian readouts, and test a separate autonomous local model editor. New results pending CI.
+
 - Scale beyond 32 held-out prompts and validate with multiple different seeds.
 - Measure regressions on tasks where Markdown fences are *required* or useful.
 - Test a second small open LLM and a more substantial failure mode.

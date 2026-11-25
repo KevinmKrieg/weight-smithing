@@ -1,0 +1,41 @@
+name: Qwen neuron validation pilots 007-009
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/qwen-neuron-validation.yml'
+      - 'src/weightsmith/neuron_validation.py'
+      - 'tests/test_weightsmith_neuron_validation.py'
+
+permissions:
+  contents: read
+
+jobs:
+  validation:
+    strategy:
+      fail-fast: false
+      matrix:
+        pilot: ['007', '008', '009']
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install CPU dependencies
+        run: |
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -e '.[target,dev]'
+      - name: Tests
+        run: pytest -q
+      - name: Run pilot
+        run: python -m weightsmith.neuron_validation --pilot ${{ matrix.pilot }} --out artifacts/pilot-${{ matrix.pilot }}
+      - name: Preserve raw results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: neuron-validation-${{ matrix.pilot }}
+          path: artifacts/pilot-${{ matrix.pilot }}/
+          if-no-files-found: warn
