@@ -1,0 +1,931 @@
+{
+  "run_id": 45681202347,
+  "source": "verified job log JSON",
+  "artifacts": [
+    {
+      "id": 15056165566,
+      "name": "iterative-editor-013",
+      "expired": false
+    },
+    {
+      "id": 15055562359,
+      "name": "iterative-editor-014",
+      "expired": false
+    },
+    {
+      "id": 15053467802,
+      "name": "iterative-editor-015",
+      "expired": false
+    }
+  ],
+  "results": [
+    {
+      "job_id": 139441887514,
+      "conclusion": "success",
+      "summary": {
+        "pilot": "014",
+        "environment": {
+          "checkpoint": "Qwen/Qwen2.5-0.5B-Instruct",
+          "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+          "resolved_checkpoint_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+          "device": "cpu",
+          "dtype": "torch.float32",
+          "transformers": "4.57.6",
+          "torch": "2.15.0+cpu",
+          "python": "3.11.18"
+        },
+        "variants": {
+          "base": [],
+          "fixed_original": [
+            [
+              23,
+              641,
+              0
+            ],
+            [
+              23,
+              1057,
+              0
+            ],
+            [
+              20,
+              266,
+              0
+            ],
+            [
+              20,
+              4752,
+              0
+            ]
+          ],
+          "fixed_jacobian": [
+            [
+              23,
+              641,
+              0
+            ],
+            [
+              16,
+              3532,
+              0
+            ],
+            [
+              23,
+              2959,
+              0
+            ],
+            [
+              12,
+              765,
+              0
+            ]
+          ],
+          "fixed_coder": [
+            [
+              23,
+              785,
+              0.5
+            ],
+            [
+              23,
+              641,
+              0.75
+            ],
+            [
+              23,
+              2959,
+              0.75
+            ],
+            [
+              20,
+              4752,
+              0.5
+            ]
+          ]
+        },
+        "evaluations": [
+          {
+            "seed": 14009,
+            "n_per_group": 24,
+            "correct": {
+              "base": {
+                "raw": 0,
+                "fenced": 23,
+                "other": 9
+              },
+              "fixed_original": {
+                "raw": 4,
+                "fenced": 20,
+                "other": 9
+              },
+              "fixed_jacobian": {
+                "raw": 19,
+                "fenced": 20,
+                "other": 9
+              },
+              "fixed_coder": {
+                "raw": 3,
+                "fenced": 21,
+                "other": 9
+              }
+            },
+            "paired": {
+              "fixed_original": {
+                "raw": {
+                  "accuracy_delta_pp": 16.67,
+                  "ci95_pp": [
+                    4.17,
+                    33.33
+                  ],
+                  "wins": 4,
+                  "losses": 0,
+                  "ties": 20
+                },
+                "fenced": {
+                  "accuracy_delta_pp": -12.5,
+                  "ci95_pp": [
+                    -25,
+                    0
+                  ],
+                  "wins": 0,
+                  "losses": 3,
+                  "ties": 21
+                },
+                "other": {
+                  "accuracy_delta_pp": 0,
+                  "ci95_pp": [
+                    0,
+                    0
+                  ],
+                  "wins": 0,
+                  "losses": 0,
+                  "ties": 24
+                }
+              },
+              "fixed_jacobian": {
+                "raw": {
+                  "accuracy_delta_pp": 79.17,
+                  "ci95_pp": [
+                    62.5,
+                    95.83
+                  ],
+                  "wins": 19,
+                  "losses": 0,
+                  "ties": 5
+                },
+                "fenced": {
+                  "accuracy_delta_pp": -12.5,
+                  "ci95_pp": [
+                    -25,
+                    0
+                  ],
+                  "wins": 0,
+                  "losses": 3,
+                  "ties": 21
+                },
+                "other": {
+                  "accuracy_delta_pp": 0,
+                  "ci95_pp": [
+                    -12.5,
+                    12.5
+                  ],
+                  "wins": 1,
+                  "losses": 1,
+                  "ties": 22
+                }
+              },
+              "fixed_coder": {
+                "raw": {
+                  "accuracy_delta_pp": 12.5,
+                  "ci95_pp": [
+                    0,
+                    25
+                  ],
+                  "wins": 3,
+                  "losses": 0,
+                  "ties": 21
+                },
+                "fenced": {
+                  "accuracy_delta_pp": -8.33,
+                  "ci95_pp": [
+                    -20.83,
+                    0
+                  ],
+                  "wins": 0,
+                  "losses": 2,
+                  "ties": 22
+                },
+                "other": {
+                  "accuracy_delta_pp": 0,
+                  "ci95_pp": [
+                    0,
+                    0
+                  ],
+                  "wins": 0,
+                  "losses": 0,
+                  "ties": 24
+                }
+              }
+            }
+          },
+          {
+            "seed": 14010,
+            "n_per_group": 24,
+            "correct": {
+              "base": {
+                "raw": 0,
+                "fenced": 22,
+                "other": 8
+              },
+              "fixed_original": {
+                "raw": 4,
+                "fenced": 18,
+                "other": 8
+              },
+              "fixed_jacobian": {
+                "raw": 18,
+                "fenced": 16,
+                "other": 9
+              },
+              "fixed_coder": {
+                "raw": 3,
+                "fenced": 20,
+                "other": 8
+              }
+            },
+            "paired": {
+              "fixed_original": {
+                "raw": {
+                  "accuracy_delta_pp": 16.67,
+                  "ci95_pp": [
+                    4.17,
+                    33.33
+                  ],
+                  "wins": 4,
+                  "losses": 0,
+                  "ties": 20
+                },
+                "fenced": {
+                  "accuracy_delta_pp": -16.67,
+                  "ci95_pp": [
+                    -33.33,
+                    -4.17
+                  ],
+                  "wins": 0,
+                  "losses": 4,
+                  "ties": 20
+                },
+                "other": {
+                  "accuracy_delta_pp": 0,
+                  "ci95_pp": [
+                    0,
+                    0
+                  ],
+                  "wins": 0,
+                  "losses": 0,
+                  "ties": 24
+                }
+              },
+              "fixed_jacobian": {
+                "raw": {
+                  "accuracy_delta_pp": 75,
+                  "ci95_pp": [
+                    58.33,
+                    91.67
+                  ],
+                  "wins": 18,
+                  "losses": 0,
+                  "ties": 6
+                },
+                "fenced": {
+                  "accuracy_delta_pp": -25,
+                  "ci95_pp": [
+                    -41.67,
+                    -8.33
+                  ],
+                  "wins": 0,
+                  "losses": 6,
+                  "ties": 18
+                },
+                "other": {
+                  "accuracy_delta_pp": 4.17,
+                  "ci95_pp": [
+                    0,
+                    12.5
+                  ],
+                  "wins": 1,
+                  "losses": 0,
+                  "ties": 23
+                }
+              },
+              "fixed_coder": {
+                "raw": {
+                  "accuracy_delta_pp": 12.5,
+                  "ci95_pp": [
+                    0,
+                    25
+                  ],
+                  "wins": 3,
+                  "losses": 0,
+                  "ties": 21
+                },
+                "fenced": {
+                  "accuracy_delta_pp": -8.33,
+                  "ci95_pp": [
+                    -20.83,
+                    0
+                  ],
+                  "wins": 0,
+                  "losses": 2,
+                  "ties": 22
+                },
+                "other": {
+                  "accuracy_delta_pp": 0,
+                  "ci95_pp": [
+                    0,
+                    0
+                  ],
+                  "wins": 0,
+                  "losses": 0,
+                  "ties": 24
+                }
+              }
+            }
+          }
+        ],
+        "caveat": "Synthetic extraction and exact-answer regression suite, not a public general-capability benchmark."
+      }
+    },
+    {
+      "job_id": 139441887907,
+      "conclusion": "success",
+      "summary": {
+        "pilot": "013",
+        "environment": {
+          "checkpoint": "Qwen/Qwen2.5-0.5B-Instruct",
+          "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+          "resolved_checkpoint_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+          "device": "cpu",
+          "dtype": "torch.float32",
+          "transformers": "4.57.6",
+          "torch": "2.15.0+cpu",
+          "python": "3.11.18"
+        },
+        "editor_environment": {
+          "checkpoint": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+          "revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+          "resolved_checkpoint_revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+          "device": "cpu",
+          "dtype": "torch.float32",
+          "transformers": "4.57.6",
+          "torch": "2.15.0+cpu",
+          "python": "3.11.18"
+        },
+        "trial_budget_per_arm": 4,
+        "histories": {
+          "editor": [
+            {
+              "trial": 1,
+              "action": {
+                "op": "set",
+                "layer": 23,
+                "channel": 785,
+                "multiplier": 0.5
+              },
+              "patch": [
+                [
+                  23,
+                  785,
+                  0.5
+                ]
+              ],
+              "feedback": {
+                "correct": {
+                  "raw": 0,
+                  "fenced": 6,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                }
+              }
+            },
+            {
+              "trial": 2,
+              "action": {
+                "op": "remove",
+                "layer": 23,
+                "channel": 785
+              },
+              "patch": [],
+              "feedback": {
+                "correct": {
+                  "raw": 0,
+                  "fenced": 6,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                }
+              }
+            },
+            {
+              "trial": 3,
+              "action": {
+                "op": "set",
+                "layer": 23,
+                "channel": 785,
+                "multiplier": 0.5
+              },
+              "patch": [
+                [
+                  23,
+                  785,
+                  0.5
+                ]
+              ],
+              "feedback": {
+                "correct": {
+                  "raw": 0,
+                  "fenced": 6,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                }
+              }
+            },
+            {
+              "trial": 4,
+              "action": {
+                "op": "set",
+                "layer": 23,
+                "channel": 785,
+                "multiplier": 0.75
+              },
+              "patch": [
+                [
+                  23,
+                  785,
+                  0.75
+                ]
+              ],
+              "feedback": {
+                "correct": {
+                  "raw": 0,
+                  "fenced": 6,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                }
+              }
+            }
+          ],
+          "random": [
+            {
+              "trial": 1,
+              "action": {
+                "op": "set",
+                "layer": 16,
+                "channel": 3532,
+                "multiplier": 0.75
+              },
+              "patch": [
+                [
+                  16,
+                  3532,
+                  0.75
+                ]
+              ],
+              "feedback": {
+                "correct": {
+                  "raw": 0,
+                  "fenced": 6,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                }
+              }
+            },
+            {
+              "trial": 2,
+              "action": {
+                "op": "set",
+                "layer": 23,
+                "channel": 2959,
+                "multiplier": 0
+              },
+              "patch": [
+                [
+                  16,
+                  3532,
+                  0.75
+                ],
+                [
+                  23,
+                  2959,
+                  0
+                ]
+              ],
+              "feedback": {
+                "correct": {
+                  "raw": 1,
+                  "fenced": 6,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 1,
+                  "fenced": 0,
+                  "other": 0
+                }
+              }
+            },
+            {
+              "trial": 3,
+              "action": {
+                "op": "set",
+                "layer": 23,
+                "channel": 2959,
+                "multiplier": 0.5
+              },
+              "patch": [
+                [
+                  16,
+                  3532,
+                  0.75
+                ],
+                [
+                  23,
+                  2959,
+                  0.5
+                ]
+              ],
+              "feedback": {
+                "correct": {
+                  "raw": 0,
+                  "fenced": 6,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                }
+              }
+            },
+            {
+              "trial": 4,
+              "action": {
+                "op": "set",
+                "layer": 23,
+                "channel": 2959,
+                "multiplier": 0.25
+              },
+              "patch": [
+                [
+                  16,
+                  3532,
+                  0.75
+                ],
+                [
+                  23,
+                  2959,
+                  0.25
+                ]
+              ],
+              "feedback": {
+                "correct": {
+                  "raw": 1,
+                  "fenced": 6,
+                  "other": 2
+                },
+                "losses": {
+                  "raw": 0,
+                  "fenced": 0,
+                  "other": 0
+                },
+                "wins": {
+                  "raw": 1,
+                  "fenced": 0,
+                  "other": 0
+                }
+              }
+            }
+          ]
+        },
+        "variants": {
+          "base": [],
+          "jacobian": [
+            [
+              23,
+              641,
+              0
+            ],
+            [
+              16,
+              3532,
+              0
+            ],
+            [
+              23,
+              2959,
+              0
+            ],
+            [
+              12,
+              765,
+              0
+            ]
+          ],
+          "editor_selected": [],
+          "editor_first": [
+            [
+              23,
+              785,
+              0.5
+            ]
+          ],
+          "random_selected": [
+            [
+              16,
+              3532,
+              0.75
+            ],
+            [
+              23,
+              2959,
+              0
+            ]
+          ],
+          "random_first": [
+            [
+              16,
+              3532,
+              0.75
+            ]
+          ]
+        },
+        "evaluation": {
+          "seed": 13009,
+          "n_per_group": 24,
+          "correct": {
+            "base": {
+              "raw": 0,
+              "fenced": 18,
+              "other": 9
+            },
+            "jacobian": {
+              "raw": 19,
+              "fenced": 17,
+              "other": 10
+            },
+            "editor_selected": {
+              "raw": 0,
+              "fenced": 18,
+              "other": 9
+            },
+            "editor_first": {
+              "raw": 0,
+              "fenced": 18,
+              "other": 9
+            },
+            "random_selected": {
+              "raw": 3,
+              "fenced": 18,
+              "other": 9
+            },
+            "random_first": {
+              "raw": 1,
+              "fenced": 18,
+              "other": 9
+            }
+          },
+          "paired": {
+            "jacobian": {
+              "raw": {
+                "accuracy_delta_pp": 79.17,
+                "ci95_pp": [
+                  62.5,
+                  95.83
+                ],
+                "wins": 19,
+                "losses": 0,
+                "ties": 5
+              },
+              "fenced": {
+                "accuracy_delta_pp": -4.17,
+                "ci95_pp": [
+                  -12.5,
+                  0
+                ],
+                "wins": 0,
+                "losses": 1,
+                "ties": 23
+              },
+              "other": {
+                "accuracy_delta_pp": 4.17,
+                "ci95_pp": [
+                  0,
+                  12.5
+                ],
+                "wins": 1,
+                "losses": 0,
+                "ties": 23
+              }
+            },
+            "editor_selected": {
+              "raw": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 24
+              },
+              "fenced": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 24
+              },
+              "other": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 24
+              }
+            },
+            "editor_first": {
+              "raw": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 24
+              },
+              "fenced": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 24
+              },
+              "other": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 24
+              }
+            },
+            "random_selected": {
+              "raw": {
+                "accuracy_delta_pp": 12.5,
+                "ci95_pp": [
+                  0,
+                  25
+                ],
+                "wins": 3,
+                "losses": 0,
+                "ties": 21
+              },
+              "fenced": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 24
+              },
+              "other": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 24
+              }
+            },
+            "random_first": {
+              "raw": {
+                "accuracy_delta_pp": 4.17,
+                "ci95_pp": [
+                  0,
+                  12.5
+                ],
+                "wins": 1,
+                "losses": 0,
+                "ties": 23
+              },
+              "fenced": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 24
+              },
+              "other": {
+                "accuracy_delta_pp": 0,
+                "ci95_pp": [
+                  0,
+                  0
+                ],
+                "wins": 0,
+                "losses": 0,
+                "ties": 24
+              }
+            }
+          }
+        },
+        "caveat": "Finite grammar, candidate-restricted, four practice evaluations per arm; best practice patch or no-op. Random search is one realization."
+      }
+    },
+    {
+      "job_id": 139441888253,
+      "conclusion": "success",
+      "summary": {
+        "pilot": "015",
+        "status": "insufficient_format_only_failures",
+        "eligible": 0,
+        "environment": {
+          "checkpoint": "HuggingFaceTB/SmolLM2-360M-Instruct",
+          "resolved_checkpoint_revision": "a10cc1512eabd3dde888204e902eca88bddb4951",
+          "model_type": "llama"
+        }
+      }
+    }
+  ]
+}
