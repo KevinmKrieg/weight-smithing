@@ -6,7 +6,7 @@ These are independent small-model experiments, not replications of their reporte
 
 ## Pilots 003–004: atlas and context-sensitive repair
 
-Status: implementation submitted for CI; no measured results claimed until an actual run succeeds.
+Status: completed successfully on November 25, 2026. See the measured results below.
 
 Target: pinned Qwen2.5-0.5B-Instruct, exactly as in pilots 001–002.
 At the first generation position, capture signed MLP intermediate activations for six paired
@@ -71,4 +71,12 @@ are too few for strong generalization claims.
 Run both applications with:
     python -m weightsmith.neuron_applications --device cpu
 
-No measured results claimed until CI has actually completed.
+## Verified results
+
+Both workflows succeeded; the latest applications workflow reported 39 passing tests. The repair workflow reported 36 tests on its earlier commit. The checked-in [result JSON](../results/neuron-basis-pilots-003-006.json) contains the full summaries parsed from the successful job logs. Raw outputs remain in the linked CI artifacts.
+
+- Pilot 004: 19/48 to 31/48, +25 pp [12.5, 37.5]; 12 wins and 0 losses. Required fences: 12/12 across all variants. Activation-only 30/48 (13 wins, 2 losses); random 19/48. No claim of statistically significant superiority over activation-only.
+- Pilot 005: 8/8 across all three heuristic auditors; all eight cases validated by independent next-token logit shifts, not free generation.
+- Pilot 006: macro AUROC 1.0 for native neurons, centroid and ridge; keyword 0.8705357. Ceiling effects and small hand-authored data limit conclusions.
+
+The selected columns were (layer, channel) (23,641), (23,1057), (20,266), (20,4752), all scaled to zero. The intervention is a practice-only deterministic heuristic, not an autonomous LLM edit. The required-fence set was small, and no observed losses is not proof of no regressions.

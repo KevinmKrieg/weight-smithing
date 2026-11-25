@@ -81,7 +81,18 @@ The project also retains our earlier [small-network Breakout demonstration](docs
 
 ## Neuron-basis interpretability (new research phase)
 
-Pilots 003–004 test signed native-neuron vocabulary readouts, causal ablation and gradient-free internal weight repair with explicit Markdown-required regression tests. See [the protocol and planned auditing/detection studies](docs/neuron-basis.md) and [the atlas/repair CI workflow](.github/workflows/qwen-neuron-basis.yml). Pilots 005–006 also implement a closed-set synthetic direction-patch audit and a few-shot native-neuron concept detector ([applications CI](.github/workflows/qwen-neuron-applications.yml)). Results are pending execution; the original measured pilots above are unchanged.
+**Pilot 004: the first successful internal MLP weight repair.** Four down-projection columns (3,584 weight positions) were zeroed using practice-only causal evidence. On 48 held-out tasks, accuracy rose from 39.6% to 64.6% (+25 pp, paired bootstrap 95% CI +12.5 to +37.5 pp; 12 wins, zero losses). Both base and edited models scored 12/12 on separate required-fence JSON prompts. Activation-only editing scored 62.5%, random editing 39.6%; superiority over activation-only is not established.
+
+| Variant | Accuracy | Raw JSON | Required fences |
+|---|---:|---:|---:|
+| Base | 19/48 | 0/12 | 12/12 |
+| Causal edit | 31/48 | 12/12 | 12/12 |
+| Activation only | 30/48 | 12/12 | 12/12 |
+| Random | 19/48 | 0/12 | 12/12 |
+
+Pilots 005–006: all three auditing heuristics correctly identified 8/8 synthetic direction patches/nulls; native neuron, centroid and ridge concept scores each reached macro AUROC 1.0 on 36 held-out examples (keyword 0.871). These easy benchmarks establish feasibility, not superiority.
+
+[Protocol and limitations](docs/neuron-basis.md) · [Verified run summaries](results/neuron-basis-pilots-003-006.json) · [Atlas/repair run](https://github.com/KevinmKrieg/weight-smithing/actions/runs/45644467541) · [Applications run](https://github.com/KevinmKrieg/weight-smithing/actions/runs/45644786421).
 
 ## Next research steps
 
