@@ -79,6 +79,10 @@ For an **API-driven editor LLM** that chooses sparse internal MLP columns from n
 
 The project also retains our earlier [small-network Breakout demonstration](docs/breakout.md) as supporting background.
 
+## Neuron-basis interpretability (new research phase)
+
+Pilots 003–004 test signed native-neuron vocabulary readouts, causal ablation and gradient-free internal weight repair with explicit Markdown-required regression tests. See [the protocol and planned auditing/detection studies](docs/neuron-basis.md) and [the CI workflow](.github/workflows/qwen-neuron-basis.yml). Results are pending execution; the original measured pilots above are unchanged.
+
 ## Next research steps
 
 - Scale beyond 32 held-out prompts and validate with multiple different seeds.

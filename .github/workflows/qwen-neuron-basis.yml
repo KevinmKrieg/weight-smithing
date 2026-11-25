@@ -1,0 +1,39 @@
+name: Qwen neuron basis pilots 003-004
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/qwen-neuron-basis.yml'
+      - 'src/weightsmith/neuron_basis.py'
+      - 'tests/test_weightsmith_neuron_basis.py'
+
+permissions:
+  contents: read
+
+jobs:
+  neuron-basis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install CPU model dependencies
+        run: |
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -e '.[target,dev]'
+      - name: Tests
+        run: pytest -q
+      - name: Run signed atlas and causal weight edit
+        run: |
+          python -m weightsmith.neuron_basis --device cpu --out artifacts/neuron-basis-003-004
+          cat artifacts/neuron-basis-003-004/summary.json
+      - name: Preserve full results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qwen-neuron-basis-003-004
+          path: artifacts/neuron-basis-003-004/
+          if-no-files-found: warn
