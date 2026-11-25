@@ -1,6 +1,6 @@
 # Pilots 010–012: constrained editors, attenuation, transfer
 
-Status: implementation submitted for CI; no results claimed.
+Status: completed; 45 unit tests passed in each job. Results below.
 
 010 compares Qwen2.5-1.5B-Instruct and Qwen2.5-Coder-1.5B-Instruct as editor
 models, both distinct from the 0.5B target. Each gets the same practice-only
@@ -39,3 +39,13 @@ test, not a claim of cross-model patch portability.
 All jobs run on CPU with a 90-minute cap and upload raw artifacts. No external
 API or paid GPU requested. Derivatives are diagnostic only; weights are changed
 by direct column scaling, and target inference is unconstrained.
+
+## Verified outcomes
+
+010: both unrestricted proposals invalid; Instruct constrained editor abstained. Coder selected (23,785,0.5), (23,641,0.75), (23,2959,0.75), (20,4752,0.5). Base 15/48, editor 17/48, direct 23/48, Jacobian/causal 29/48. Editor gain +4.17 pp [0,10.42], two wins, zero losses; required fences 23/24 unchanged. Jacobian required fences also 23/24, but one win and one loss. Direct lens lost one fence task. No evidence of editor superiority or statistically established improvement.
+
+011: both selected multiplier zero; original 24/48, Jacobian 31/48, base 16/48. Jacobian +31.25 pp [18.75,45.83], 15 wins and no losses; all variants 24/24 required fences. Partial attenuation was not selected by the practice rule; no claim that it cannot work elsewhere.
+
+012: zero eligible prefix failures on 16 practice prompts, no held-out or patch evaluation. Infeasible benchmark, not negative evidence about the method.
+
+[Verified job summaries](../results/neuron-transfer-010-012.json) and [raw artifacts](https://github.com/KevinmKrieg/weight-smithing/actions/runs/45671554202).

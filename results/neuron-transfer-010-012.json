@@ -1,0 +1,675 @@
+{
+  "run_id": 45671554202,
+  "source": "verified job log JSON",
+  "artifacts": [
+    {
+      "id": 15053200590,
+      "name": "neuron-transfer-011",
+      "expired": false
+    },
+    {
+      "id": 15052086150,
+      "name": "neuron-transfer-010",
+      "expired": false
+    },
+    {
+      "id": 15048643820,
+      "name": "neuron-transfer-012",
+      "expired": false
+    }
+  ],
+  "results": [
+    {
+      "job_id": 139407877374,
+      "conclusion": "success",
+      "summary": {
+        "pilot": "012",
+        "status": "insufficient_practice_prefix_failures",
+        "failure_count": 0,
+        "environment": {
+          "checkpoint": "Qwen/Qwen2.5-1.5B-Instruct",
+          "revision": "main",
+          "resolved_checkpoint_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+          "device": "cpu",
+          "dtype": "torch.float32",
+          "transformers": "4.57.6",
+          "torch": "2.15.0+cpu",
+          "python": "3.11.18"
+        },
+        "caveat": "No alternative failure mode selected after observing practice."
+      }
+    },
+    {
+      "job_id": 139407877764,
+      "conclusion": "success",
+      "summary": {
+        "pilot": "010",
+        "proposals": {
+          "editor_0": {
+            "environment": {
+              "checkpoint": "Qwen/Qwen2.5-1.5B-Instruct",
+              "revision": "main",
+              "resolved_checkpoint_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+              "device": "cpu",
+              "dtype": "torch.float32",
+              "transformers": "4.57.6",
+              "torch": "2.15.0+cpu",
+              "python": "3.11.18"
+            },
+            "raw_status": "invalid",
+            "constrained_status": "abstained",
+            "constrained": {
+              "edits": [],
+              "rationale": "Sequential constrained editor choices; no generated rationale."
+            }
+          },
+          "editor_1": {
+            "environment": {
+              "checkpoint": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+              "revision": "main",
+              "resolved_checkpoint_revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+              "device": "cpu",
+              "dtype": "torch.float32",
+              "transformers": "4.57.6",
+              "torch": "2.15.0+cpu",
+              "python": "3.11.18"
+            },
+            "raw_status": "invalid",
+            "constrained_status": "valid",
+            "constrained": {
+              "edits": [
+                {
+                  "layer": 23,
+                  "channel": 785,
+                  "multiplier": 0.5
+                },
+                {
+                  "layer": 23,
+                  "channel": 641,
+                  "multiplier": 0.75
+                },
+                {
+                  "layer": 23,
+                  "channel": 2959,
+                  "multiplier": 0.75
+                },
+                {
+                  "layer": 20,
+                  "channel": 4752,
+                  "multiplier": 0.5
+                }
+              ],
+              "rationale": "Sequential constrained editor choices; no generated rationale."
+            }
+          }
+        },
+        "variants": {
+          "base": [],
+          "direct_lens": [
+            [
+              23,
+              641,
+              0
+            ],
+            [
+              23,
+              2959,
+              0
+            ],
+            [
+              20,
+              4752,
+              0
+            ],
+            [
+              23,
+              785,
+              0
+            ]
+          ],
+          "jacobian": [
+            [
+              23,
+              641,
+              0
+            ],
+            [
+              16,
+              3532,
+              0
+            ],
+            [
+              23,
+              2959,
+              0
+            ],
+            [
+              12,
+              765,
+              0
+            ]
+          ],
+          "causal_union": [
+            [
+              23,
+              641,
+              0
+            ],
+            [
+              16,
+              3532,
+              0
+            ],
+            [
+              23,
+              2959,
+              0
+            ],
+            [
+              12,
+              765,
+              0
+            ]
+          ],
+          "editor_0_constrained": [],
+          "editor_1_constrained": [
+            [
+              23,
+              785,
+              0.5
+            ],
+            [
+              23,
+              641,
+              0.75
+            ],
+            [
+              23,
+              2959,
+              0.75
+            ],
+            [
+              20,
+              4752,
+              0.5
+            ]
+          ]
+        },
+        "evaluation": {
+          "seed": 101009,
+          "raw_json_n": 24,
+          "unrelated_n": 24,
+          "required_fences_n": 24,
+          "heldout": {
+            "base": {
+              "n": 48,
+              "accuracy": 0.3125,
+              "mean_tokens": 13,
+              "length_cap_rate": 0,
+              "mean_repeat4": 0.002104375,
+              "accuracy_by_family": {
+                "arithmetic": 0.875,
+                "json": 0,
+                "uppercase": 1,
+                "selection": 0
+              }
+            },
+            "direct_lens": {
+              "n": 48,
+              "accuracy": 0.4791666666666667,
+              "mean_tokens": 12.875,
+              "length_cap_rate": 0,
+              "mean_repeat4": 0.002840625,
+              "accuracy_by_family": {
+                "arithmetic": 0.875,
+                "json": 0.3333333333333333,
+                "uppercase": 1,
+                "selection": 0
+              }
+            },
+            "jacobian": {
+              "n": 48,
+              "accuracy": 0.6041666666666666,
+              "mean_tokens": 12.958333333333334,
+              "length_cap_rate": 0,
+              "mean_repeat4": 0,
+              "accuracy_by_family": {
+                "arithmetic": 0.875,
+                "json": 0.5833333333333334,
+                "uppercase": 1,
+                "selection": 0
+              }
+            },
+            "causal_union": {
+              "n": 48,
+              "accuracy": 0.6041666666666666,
+              "mean_tokens": 12.958333333333334,
+              "length_cap_rate": 0,
+              "mean_repeat4": 0,
+              "accuracy_by_family": {
+                "arithmetic": 0.875,
+                "json": 0.5833333333333334,
+                "uppercase": 1,
+                "selection": 0
+              }
+            },
+            "editor_0_constrained": {
+              "n": 48,
+              "accuracy": 0.3125,
+              "mean_tokens": 13,
+              "length_cap_rate": 0,
+              "mean_repeat4": 0.002104375,
+              "accuracy_by_family": {
+                "arithmetic": 0.875,
+                "json": 0,
+                "uppercase": 1,
+                "selection": 0
+              }
+            },
+            "editor_1_constrained": {
+              "n": 48,
+              "accuracy": 0.3541666666666667,
+              "mean_tokens": 11.5625,
+              "length_cap_rate": 0,
+              "mean_repeat4": 0.002840625,
+              "accuracy_by_family": {
+                "arithmetic": 0.875,
+                "json": 0.08333333333333333,
+                "uppercase": 1,
+                "selection": 0
+              }
+            }
+          },
+          "vs_base": {
+            "direct_lens": {
+              "accuracy_delta_pp": 16.67,
+              "ci95_pp": [
+                6.25,
+                27.08
+              ],
+              "wins": 8,
+              "losses": 0,
+              "ties": 40
+            },
+            "jacobian": {
+              "accuracy_delta_pp": 29.17,
+              "ci95_pp": [
+                16.67,
+                43.75
+              ],
+              "wins": 14,
+              "losses": 0,
+              "ties": 34
+            },
+            "causal_union": {
+              "accuracy_delta_pp": 29.17,
+              "ci95_pp": [
+                16.67,
+                43.75
+              ],
+              "wins": 14,
+              "losses": 0,
+              "ties": 34
+            },
+            "editor_0_constrained": {
+              "accuracy_delta_pp": 0,
+              "ci95_pp": [
+                0,
+                0
+              ],
+              "wins": 0,
+              "losses": 0,
+              "ties": 48
+            },
+            "editor_1_constrained": {
+              "accuracy_delta_pp": 4.17,
+              "ci95_pp": [
+                0,
+                10.42
+              ],
+              "wins": 2,
+              "losses": 0,
+              "ties": 46
+            }
+          },
+          "required_fences": {
+            "base": 0.9583333333333334,
+            "direct_lens": 0.9166666666666666,
+            "jacobian": 0.9583333333333334,
+            "causal_union": 0.9583333333333334,
+            "editor_0_constrained": 0.9583333333333334,
+            "editor_1_constrained": 0.9583333333333334
+          },
+          "fence_vs_base": {
+            "direct_lens": {
+              "accuracy_delta_pp": -4.17,
+              "ci95_pp": [
+                -12.5,
+                0
+              ],
+              "wins": 0,
+              "losses": 1,
+              "ties": 23
+            },
+            "jacobian": {
+              "accuracy_delta_pp": 0,
+              "ci95_pp": [
+                -12.5,
+                12.5
+              ],
+              "wins": 1,
+              "losses": 1,
+              "ties": 22
+            },
+            "causal_union": {
+              "accuracy_delta_pp": 0,
+              "ci95_pp": [
+                -12.5,
+                12.5
+              ],
+              "wins": 1,
+              "losses": 1,
+              "ties": 22
+            },
+            "editor_0_constrained": {
+              "accuracy_delta_pp": 0,
+              "ci95_pp": [
+                0,
+                0
+              ],
+              "wins": 0,
+              "losses": 0,
+              "ties": 24
+            },
+            "editor_1_constrained": {
+              "accuracy_delta_pp": 0,
+              "ci95_pp": [
+                0,
+                0
+              ],
+              "wins": 0,
+              "losses": 0,
+              "ties": 24
+            }
+          }
+        }
+      }
+    },
+    {
+      "job_id": 139407877833,
+      "conclusion": "success",
+      "summary": {
+        "pilot": "011",
+        "environment": {
+          "checkpoint": "Qwen/Qwen2.5-0.5B-Instruct",
+          "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+          "resolved_checkpoint_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+          "device": "cpu",
+          "dtype": "torch.float32",
+          "transformers": "4.57.6",
+          "torch": "2.15.0+cpu",
+          "python": "3.11.18"
+        },
+        "selected_scales": {
+          "original": 0,
+          "jacobian": 0
+        },
+        "variants": {
+          "base": [],
+          "original_selected": [
+            [
+              23,
+              641,
+              0
+            ],
+            [
+              23,
+              1057,
+              0
+            ],
+            [
+              20,
+              266,
+              0
+            ],
+            [
+              20,
+              4752,
+              0
+            ]
+          ],
+          "original_full": [
+            [
+              23,
+              641,
+              0
+            ],
+            [
+              23,
+              1057,
+              0
+            ],
+            [
+              20,
+              266,
+              0
+            ],
+            [
+              20,
+              4752,
+              0
+            ]
+          ],
+          "jacobian_selected": [
+            [
+              23,
+              641,
+              0
+            ],
+            [
+              16,
+              3532,
+              0
+            ],
+            [
+              23,
+              2959,
+              0
+            ],
+            [
+              12,
+              765,
+              0
+            ]
+          ],
+          "jacobian_full": [
+            [
+              23,
+              641,
+              0
+            ],
+            [
+              16,
+              3532,
+              0
+            ],
+            [
+              23,
+              2959,
+              0
+            ],
+            [
+              12,
+              765,
+              0
+            ]
+          ]
+        },
+        "evaluation": {
+          "seed": 111009,
+          "raw_json_n": 24,
+          "unrelated_n": 24,
+          "required_fences_n": 24,
+          "heldout": {
+            "base": {
+              "n": 48,
+              "accuracy": 0.3333333333333333,
+              "mean_tokens": 11.354166666666666,
+              "length_cap_rate": 0,
+              "mean_repeat4": 0,
+              "accuracy_by_family": {
+                "arithmetic": 0.875,
+                "json": 0,
+                "uppercase": 1,
+                "selection": 0.125
+              }
+            },
+            "original_selected": {
+              "n": 48,
+              "accuracy": 0.5,
+              "mean_tokens": 12.8125,
+              "length_cap_rate": 0,
+              "mean_repeat4": 0.002840625,
+              "accuracy_by_family": {
+                "arithmetic": 0.875,
+                "json": 0.3333333333333333,
+                "uppercase": 1,
+                "selection": 0.125
+              }
+            },
+            "original_full": {
+              "n": 48,
+              "accuracy": 0.5,
+              "mean_tokens": 12.8125,
+              "length_cap_rate": 0,
+              "mean_repeat4": 0.002840625,
+              "accuracy_by_family": {
+                "arithmetic": 0.875,
+                "json": 0.3333333333333333,
+                "uppercase": 1,
+                "selection": 0.125
+              }
+            },
+            "jacobian_selected": {
+              "n": 48,
+              "accuracy": 0.6458333333333334,
+              "mean_tokens": 12.8125,
+              "length_cap_rate": 0,
+              "mean_repeat4": 0,
+              "accuracy_by_family": {
+                "arithmetic": 0.875,
+                "json": 0.625,
+                "uppercase": 1,
+                "selection": 0.125
+              }
+            },
+            "jacobian_full": {
+              "n": 48,
+              "accuracy": 0.6458333333333334,
+              "mean_tokens": 12.8125,
+              "length_cap_rate": 0,
+              "mean_repeat4": 0,
+              "accuracy_by_family": {
+                "arithmetic": 0.875,
+                "json": 0.625,
+                "uppercase": 1,
+                "selection": 0.125
+              }
+            }
+          },
+          "vs_base": {
+            "original_selected": {
+              "accuracy_delta_pp": 16.67,
+              "ci95_pp": [
+                6.25,
+                27.08
+              ],
+              "wins": 8,
+              "losses": 0,
+              "ties": 40
+            },
+            "original_full": {
+              "accuracy_delta_pp": 16.67,
+              "ci95_pp": [
+                6.25,
+                27.08
+              ],
+              "wins": 8,
+              "losses": 0,
+              "ties": 40
+            },
+            "jacobian_selected": {
+              "accuracy_delta_pp": 31.25,
+              "ci95_pp": [
+                18.75,
+                45.83
+              ],
+              "wins": 15,
+              "losses": 0,
+              "ties": 33
+            },
+            "jacobian_full": {
+              "accuracy_delta_pp": 31.25,
+              "ci95_pp": [
+                18.75,
+                45.83
+              ],
+              "wins": 15,
+              "losses": 0,
+              "ties": 33
+            }
+          },
+          "required_fences": {
+            "base": 1,
+            "original_selected": 1,
+            "original_full": 1,
+            "jacobian_selected": 1,
+            "jacobian_full": 1
+          },
+          "fence_vs_base": {
+            "original_selected": {
+              "accuracy_delta_pp": 0,
+              "ci95_pp": [
+                0,
+                0
+              ],
+              "wins": 0,
+              "losses": 0,
+              "ties": 24
+            },
+            "original_full": {
+              "accuracy_delta_pp": 0,
+              "ci95_pp": [
+                0,
+                0
+              ],
+              "wins": 0,
+              "losses": 0,
+              "ties": 24
+            },
+            "jacobian_selected": {
+              "accuracy_delta_pp": 0,
+              "ci95_pp": [
+                0,
+                0
+              ],
+              "wins": 0,
+              "losses": 0,
+              "ties": 24
+            },
+            "jacobian_full": {
+              "accuracy_delta_pp": 0,
+              "ci95_pp": [
+                0,
+                0
+              ],
+              "wins": 0,
+              "losses": 0,
+              "ties": 24
+            }
+          }
+        }
+      }
+    }
+  ]
+}
