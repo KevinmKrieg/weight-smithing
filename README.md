@@ -118,3 +118,6 @@ Pilots 005–006: all three auditing heuristics correctly identified 8/8 synthet
 ---
 
 <sub>Independent MIT-licensed project inspired by weight-space programming. Published numbers here are from our own project experiments, with raw results and provenance linked. Not affiliated with the source paper's authors or Qwen developers.</sub>
+
+
+[Pilots 028–030](docs/behavior-aware.md): single-neuron robustness, output-margin-aware direction fitting, and capability-aware failure discovery. Results pending CI.
