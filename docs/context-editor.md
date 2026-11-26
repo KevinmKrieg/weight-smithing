@@ -1,6 +1,6 @@
 # Pilots 019–021: context-discriminative editing
 
-Status: submitted for CPU CI; no results claimed.
+Status: completed; 53 tests passed per job.
 
 019 compares unmodified Qwen, global Jacobian attenuation, an oracle
 task-type gate, and a fixed text-only router. Two fresh evaluation sets
@@ -33,3 +33,13 @@ No held-out feedback. Report individual seed outcomes and regressions rather
 than claim statistical superiority from three seeds. Synthetic templates
 remain shared. Separate jobs on standard CPU runners with a four-hour cap;
 no paid APIs or GPUs requested. Partial artifacts are uploaded on failure.
+
+## Verified outcomes
+
+019: base raw/fenced/other 6/39/21; global 35/32/20, nine paired losses (seven fenced, two other), including an other-task win. Oracle 35/39/21, lexical router 31/39/21, both zero losses. Novel instruction router recall 12/24 and no observed false positives. Oracle uses labels and neither router is a weight-only solution.
+
+020: selected and unconstrained gains both 2.0, practice raw 9/12 vs 0/12, fenced 10/12 and other 4/12 unchanged. Raw/fenced/other held-out base 6/40/19, global 32/32/18, contextual 31/39/19. One contextual fence loss vs nine global losses; 25/26 of global net raw gains retained. Novel raw 13/24 vs 6/24, paired CI [12.5,50] pp. Closed-form supervised row edits; no inference router. Direction causality, transfer and general capabilities remain unverified.
+
+021: all 54 trials completed. Selected editor raw 4/8/0 per seed, greedy 0/4/0, random 4/4/4, Jacobian 18/16/19. Editor two other losses and one fence win; greedy one fence and one other loss; random zero losses and one fence win; Jacobian eight losses and one other win. Editor no-op in one seed, greedy no-op in two. No demonstrated advantage over random. Three correlated synthetic seed splits are not a powered comparison.
+
+[Exact summaries](../results/context-editor-019-021.json) · [Raw artifacts](https://github.com/KevinmKrieg/weight-smithing/actions/runs/45718833524).
