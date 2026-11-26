@@ -96,7 +96,7 @@ Pilots 005–006: all three auditing heuristics correctly identified 8/8 synthet
 
 ## Next research steps
 
-[Pilots 025–027](docs/sparse-contextual.md) independently validate sparse contextual edits, weighted preservation-aware directions and schema failure decomposition. Results pending CI.
+[Pilots 025–027](docs/sparse-contextual.md) independently validate sparse contextual edits, weighted preservation-aware directions and schema failure decomposition. **Verified:** single row 43/144 vs 18/144 base, zero paired protection losses; sparse zero-practice-loss selection 71/144 with eight held-out protection losses. Weighted ridge 96/144 for all penalties, protection losses 21/19/19. New-schema raw 0/48 for all arms; only three baseline wrapper-only failures. [Results](results/sparse-contextual-025-027.json).
 
 [Pilots 022–024](docs/contextual-validation.md) replicate context-discriminative edits across three fits and new schemas, compare norm-matched random and shuffled-label directions and row ablations, and screen CSV wrapper repair. **Verified:** 022 only one of three fits selected a nonzero gain (32/72 raw vs 6/72 base, one loss); all new-schema raw scores zero. 023 fitted fixed-gain direction 32/48 vs 6/48 base, random 6–7/48, shuffled 7–10/48; three losses vs eight global. Leaveout row 0 yielded 18/48 with zero losses; leaveout row 2 retained 32/48 with three losses. 024 zero eligible CSV wrapper failures in 18 practice prompts; no edit. [Results](results/contextual-validation-022-024.json) · [CI](https://github.com/KevinmKrieg/weight-smithing/actions/runs/45798999117).
 
